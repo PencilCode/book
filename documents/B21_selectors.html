@@ -1,0 +1,128 @@
+<div>
+<h2>21. Selectors</h2>
+
+<div>
+<h3>Tags</h3>
+<pre data-run="turtle.remove(); $('body').css('overflow', 'hidden');">
+write """&lt;style&gt;
+h2 { color: red; }
+h3 { background: bisque; }
+&lt;/style&gt;
+"""
+write "&lt;h2&gt;Stylesheet&lt;/h2&gt;"
+write "&lt;h3&gt;Tag Styles&lt;/h3&gt;"
+write "&lt;h3&gt;style specific tags&lt;/h3&gt;"
+
+</pre>
+</div>
+
+<div>
+<h3>Classes</h3>
+<pre data-run="turtle.remove()">
+write """
+&lt;style&gt;
+.a { text-decoration: underline; }
+.b { font-style: italic; }
+&lt;/style&gt;
+"""
+write "&lt;p class='a'&gt;Class a&lt;/p&gt;"
+write "&lt;h3 class='b'&gt;Class b&lt;/h3&gt;"
+write "&lt;p class='b'&gt;Classes apply to any tag.&lt;/p&gt;"
+
+</pre>
+</div>
+
+
+<div>
+<h3>Composites</h3>
+<pre data-run="turtle.remove(); $('body').css({lineHeight: '150%'})">
+write """
+&lt;style&gt;
+i { border: 1px solid black; margin: 2px;
+    display:inline-table }
+i:nth-of-type(1) { background: gold }
+i:nth-of-type(2n+4) { background: skyblue }
+i:nth-of-type(3n+9) { background: thistle }
+&lt;/style&gt;
+"""
+for x in [1..24]
+  write "&lt;i&gt;#{x}&lt;/i&gt;"
+
+</pre>
+</div>
+
+<div>
+<h3>jQuery</h3>
+<pre data-run="turtle.remove(); $('body,div').css({lineHeight: '200%', wordBreak: 'break-all'}); $.fx.speeds.default=0">
+write "&lt;p&gt;&lt;mark&gt;a&lt;/mark&gt;v&lt;mark&gt;o&lt;/mark&gt;" +
+      "c&lt;mark&gt;a&lt;/mark&gt;d&lt;mark&gt;o&lt;/mark&gt;&lt;/p&gt;"
+$('p').css { fontSize: '200%' }
+$('mark').css { background: palegreen }
+$('mark').animate {
+    padding: '5px' }
+$('mark:nth-of-type(2n)').animate {
+    opacity: 0.3 }
+
+</pre>
+</div>
+</div>
+
+<div class="primer">
+<p>This page gives shows how to use CSS, which is a
+<em>set-oriented</em> language.  The fundamental operations in
+CSS operate on sets: every CSS selector
+represents a set of HTML elements, and every selection operator
+transforms one set of elements to another set.  With
+CSS selectors, it is easy to select any useful set of elements
+without writing a loop.
+<h3>Element Names and Hierarchy</h3>
+<p>A typical HTML document contains a tree structure like this:
+<pre style="border:1px solid black; margin: 10px;">
+&lt;body&gt;
+  &lt;h1&gt;...&lt;/h1&gt;
+  &lt;p&gt;...&lt;/p&gt;
+  &lt;p&gt;...&lt;i&gt;..&lt;/i&gt;..&lt;i&gt;..&lt;/i&gt;...&lt;/p&gt;
+  &lt;p&gt;...&lt;i&gt;..&lt;/i&gt;...&lt;/p&gt;
+  &lt;h2&gt;...&lt;i&gt;..&lt;/i&gt;...&lt;/h2&gt;
+&lt;/body&gt;
+</pre>
+<p>The <code>&lt;body&gt;</code> element contains five children:
+one <code>&lt;h1&gt;</code>, three <code>&lt;p&gt;</code>, and
+one <code>&lt;h2&gt;</code>.  Some of those children in turn have
+further children: this example has four <code>&lt;i&gt;</code>
+descendants.
+<p>CSS selectors name a tag to select all elements with that tag.
+The selector <code>p</code> selects the three
+<code>&lt;p&gt;</code> elements in the document, and the
+selector <code>i</code> selects all four <code>&lt;i&gt;</code>
+elements.  In CSS, curly braces following a selector contain
+CSS styles to apply to the selected elements.  To color the
+text within every &lt;i&gt; element, we could write
+<code>i { color: blue }</code>.
+<p>The result of a selector is always a set, and there
+is nothing wrong with selecting a singleton or empty set:
+<code>h2</code> selects a single element, and
+<code>h3</code> selects the empty set.  Some more techniques:
+<p><b class=h3>Filtering by Ancestry</b> - CSS selectors composed
+in sequence narrow sets according to ancestry.  For example <code>p i</code> selects only those
+<code>&lt;i&gt;</code> elements that are contained within
+<code>&lt;p&gt;</code>.
+<p><b class=h3>CSS Classes</b> -
+Elements with <code>class</code> attributes can be
+selected using match dot selectors such as <code>.a</code>.
+<p><b class=h3>Advanced Operators</b>
+such as <code>:nth-of-type</code> can
+select elements according to their ordinal position or other
+properties.
+<p><b class=h3>jQuery's $ Function</b>
+The jQuery function <code>$(</code>...<code>)</code> is
+a bridge between set-oriented selectors and object-oriented
+code.  <code>$('p')</code> creates a single CoffeeScript object
+that represents the whole set elements selected by <code>p</code>.
+jQuery provides a bridge between the
+set-oriented CSS language and the the object-oriented
+CoffeeScript language.
+<p>The jQuery library provides a set of methods for all set objects,
+including functions for changing and animating CSS properties interactively.
+</div>
+

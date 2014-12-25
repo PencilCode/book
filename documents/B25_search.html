@@ -1,0 +1,63 @@
+<div>
+<h2>25. Search</h2>
+
+<div>
+<h3>Maze</h3>
+<pre data-run="window.speed Infinity; scale 0.6; table = ((x, y) -> window.table(x, y, {width: 18, height:18 })); speed = ( -> ); $.fn.home = (-> this.moveto(document); this.move 0, 80); count = 10; od = window.plan; plan = (-> if (count--) > 0 then od.apply(this, arguments));">
+[width, height] = [9, 9]
+grid = table(width, height).home()
+
+sides = [
+  {dx: 0, dy: -1, ob: 'borderTop', ib: 'borderBottom'}
+  {dx: 1, dy: 0, ob: 'borderRight', ib: 'borderLeft'}
+  {dx: 0, dy: 1, ob: 'borderBottom', ib: 'borderTop'}
+  {dx: -1, dy: 0, ob: 'borderLeft', ib: 'borderRight'}
+]
+
+isopen = (x, y, side) -&gt;
+  return /none/.test(
+    grid.cell(y, x).css side.ob)
+
+isbox = (x, y) -&gt;
+  return false unless (
+    0 &lt;= x &lt; width and
+    0 &lt;= y &lt; height)
+  for s in sides
+    if isopen x, y, s
+      return false
+  return true
+
+makemaze = (x, y) -&gt;
+  loop
+    adj = (s for s in sides when isbox x + s.dx, y + s.dy)
+    if adj.length is 0 then return
+    choice = random adj
+    [nx, ny] = [x + choice.dx, y + choice.dy]
+    grid.cell(y, x).css choice.ob, 'none'
+    grid.cell(ny, nx).css choice.ib, 'none'
+    makemaze nx, ny
+
+wander = (x, y, lastdir) -&gt;
+  moveto grid.cell y, x
+  for d in [lastdir + 3 .. lastdir + 7]
+    dir = d % 4
+    s = sides[dir]
+    if isopen x, y, s then break
+  turnto grid.cell y + s.dy, x + s.dx unless dir is lastdir
+  plan -&gt; wander x + s.dx, y + s.dy, dir
+
+makemaze 0, 0
+speed 5
+wander 4, 4, 0
+</pre>
+
+</div>
+</div>
+
+
+<div class="primer">
+<p>About search.  TBD.
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+</div>
+

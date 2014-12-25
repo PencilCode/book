@@ -1,0 +1,65 @@
+<div class="learning">
+<h2>5. Creating Graphics</h2>
+
+<p>In Pencil Code, we can create graphics by using the turtle.
+There are five basic turtle functions:
+
+<p><center>
+<table class="border">
+<tr><th>code</th><th>meaning</th></tr>
+<tr><td>pen red &nbsp;</td><td>chooses the pen color red</td></tr>
+<tr><td>fd 100</td><td>moves forward by 100 pixels</td></tr>
+<tr><td>rt 90</td><td>turns right by 90 degrees</td></tr>
+<tr><td>lt 120</td><td>turns left by 120 degrees</td></tr>
+<tr><td>bk 50</td><td>slides back by 50 pixels</td></tr>
+</table>
+</center>
+
+<p>In the test panel, enter two commands to draw a line:
+
+<pre class="testpanel" data-run="scale 0.8; bk 30; pen red; fd 50;" data-norun="1" data-noreform="1">
+> <u>pen red</u>
+> <u>fd 50</u>
+> <tt> </tt>
+
+</pre>
+
+<p>The reference at the end of this book lists many other colors that
+can be used.  To stop drawing, use "pen null" to select no pen.
+
+<p>Try turning the turtle and drawing another line.  Notice
+that rt turns the turtle in place, and we need to move
+the turtle with fd to draw a corner.
+
+<pre class="testpanel" data-run="scale 0.8; bk 30; pen red; fd 50; rt 90; fd 100;" data-norun="1" data-noreform="1">
+  ...
+> <u>rt 90</u>
+> <u>fd 100</u>
+> <tt> </tt>
+
+</pre>
+
+<p>Read about the <em>rt</em> function using <em>help</em>:
+
+<pre class="testpanel">
+> <u>help rt</u>
+  <span style="border:1px solid">rt(degrees)</span> Right turn. Pivots clockwise by some degrees: rt 90
+  <span style="border:1px solid">rt(degrees, radius)</span> Right arc. Pivots with a turning radius:
+      rt 90, 50
+> <tt> </tt>
+
+</pre>
+
+<p>If we give a second number to <em>rt</em>, the turtle
+will move while turning and form an arc.  Try making a circle:
+
+<pre class="testpanel" data-run="scale 0.8; bk 25; pen red; fd 50; rt 90; fd 100; rt 360, 30" data-norun="1" data-noreform="1">
+  ...
+> <u>rt 360, 30</u>
+> <tt> </tt>
+
+</pre>
+
+<p>Remember to put a comma between the two numbers.
+
+</div>

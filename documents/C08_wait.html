@@ -1,0 +1,58 @@
+<div class="learning">
+<h2>7. Hurry Up and Wait</h2>
+
+<p>Write a welcome message after drawing the hangman shape:
+
+<pre class="editor" data-run="$('body').css({fontSize: '80%'}).append('<div>time to play hangman</div>'); home(); scale 0.7; jump -40, -85; pen blue; fd 100;" data-norun="1"; data-noreform="1">
+pen blue
+fd 150
+rt 90
+fd 50
+rt 90
+fd 20
+<u>write 'time to play hangman'</u>
+
+</pre>
+
+
+<p>Notice that the Pencil Code Turtle is as slow as a turtle!
+Unless we speed it up with the <em>speed</em> function, the turtle
+takes its own slow time long after we have asked it to move,
+and the welcome message appears before the turtle is finished.
+
+<p>We can do two things to help with the slow turtle:
+
+<ol>
+<li>Change the number of moves it makes per second using "<em>speed</em>."
+<li>Ask the program to wait for the turtle, using "<em>await</em> done defer()</b>."
+</ol>
+
+<pre class="editor" data-run="$('body').css({fontSize: '80%'}); home(); scale 0.7; jump -40, -85" data-noreform="1">
+<u>speed 10</u>
+pen blue
+fd 150
+rt 90
+fd 50
+rt 90
+fd 20
+<u>await done defer()</u>
+write 'time to play hangman'
+
+</pre>
+
+<p>Now the turtle moves faster, and the program waits until the
+turtle is done before writing the welcome message.
+
+<p>A couple things to know:
+
+<ul>
+<li>Do not use a space between <em>defer</em> and the parentheses
+"defer()".
+<li>We can make the turtle move instantly by using "speed Infinity".
+</ul>
+
+<p>Even if you have programmed before, await/defer may be new to
+you.  These keywords create <em>continuations</em>, and they are part
+of Iced CoffeeScript.  To explore how they work in more detail,
+look up Max Krohn's Iced CoffeeScript page online.
+</div>

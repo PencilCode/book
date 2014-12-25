@@ -1,0 +1,59 @@
+<div class="learning">
+<h2>13. Making it Look Like Hangman</h2>
+
+<p>It will be more fun if we make our game look like Hangman.
+
+<p>All we need to do is draw parts of the poor
+hangman person when there is a wrong guess.  Try adding
+something like this to the wrong guess part:
+
+<pre class="editor" data-format="1">
+...
+    write 'Nope.'
+    write turns + ' more turns'
+<u>    if turns is 4 then lt 90; rt 540, 10; lt 90         
+    if turns is 3 then fd 20; lt 45; bk 30; fd 30       
+    if turns is 2 then rt 90; bk 30; fd 30; lt 45; fd 30
+    if turns is 1 then rt 45; fd 30                     
+    if turns is 1 then fd 30                            </u>
+    if turns is 0
+<u>      bk 30; lt 90; fd 30
+      await done defer() </u>
+      write 'The answer is ' + secret
+
+</pre>
+
+<p>The semicolons (;) let you put more than
+one step on the same line.  Notice when putting the
+"if" on the same line as the commands to run, we must
+use the word "then" between the test and the commands.
+
+<p>Try making variations on the hangman drawings
+for each step.
+
+<p>Whenever we want to pause the program to wait for the turtle
+to finish drawing, we can use "await done defer()".
+
+<br><br><br>
+
+<center><pre data-run="home(); jump -40, -75" style="color:transparent; width:180px;">
+pen blue
+fd 150
+rt 90
+fd 50
+rt 90
+fd 20
+
+
+lt 90; rt 540, 10; lt 90
+fd 20; lt 45; bk 30; fd 30
+rt 90; bk 30; fd 30; lt 45; fd 30
+rt 45; fd 30
+
+
+
+
+</pre>
+</center>
+
+</div>

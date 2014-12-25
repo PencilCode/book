@@ -1,0 +1,139 @@
+<div>
+<h2>6. Parameters</h3>
+
+<div>
+<h3>Polygon</h3>
+<pre data-run="jump 10, -10">
+polygon = (c, s, n) -&gt;
+  pen c
+  for [1..n]
+    fd s
+    rt 360 / n
+  pen null
+
+polygon blue, 70, 5
+bk 50
+polygon(orange, 25, 6)
+
+</pre>
+</div>
+
+
+<div>
+<h3>Rule</h3>
+<pre data-run="bk 20">
+rule = (sizes) -&gt;
+  for x in sizes
+    fd x
+    bk x
+    rt 90; fd 10; lt 90
+
+pen black
+rule [50, 10, 20, 10, 50, 10, 20, 10, 50]
+
+</pre>
+</div>
+
+
+<div>
+<h3>Starburst</h3>
+<pre data-run="move 50, 110">
+starburst = (x, shape) ->
+  for z in [1..x]
+    shape()
+    rt 360 / x
+stick = -> fd 30; bk 30
+
+pen deeppink
+starburst 3, stick
+
+jump 0, -60
+starburst 20, stick
+
+jump 0, -90
+starburst 10, -> fd 30; dot blue; bk 30
+
+jump 0, -100
+starburst 5, ->
+  fd 30
+  starburst 7, ->
+    fd 10
+    bk 10
+  bk 30
+
+</pre>
+</div>
+
+</div>
+
+<div class="primer">
+
+<p>Multiple parameters can be listed in a function
+definition with commas. The declaration
+<code>polygon = (c, s, n) -></code> sets up three parameters:
+a color <code>c</code>, a side length <code>s</code>, and a
+number <code>n</code>.
+
+<h3>Passing Arguments</h3>
+
+<p>The value passed to a parameter when using a function is called
+an <em>argument</em>.  When calling a function with
+several parameters, the arguments are listed with commas.
+For clarity, you can put parentheses around the argument list,
+like <code>polygon(orange, 25, 6)</code>.
+
+<p>When using parentheses around function arguments, do
+not put any space between the function name and the first
+parentheses, or else the parentheses will be
+interpreted as enclosing only the first argument.
+
+<h3>Objects as Arguments</h3>
+
+<p>An argument may be a complex
+object such as a list.  That is the approach taken in
+<span class=h3>Rule</span>.
+
+<p>The parameter named <code>sizes</code> is used as the
+loop list in a <code>for</code> loop.  When <code>rule</code>
+is called, the whole list is passed as one argument.
+
+<h3>Functions as Arguments</h3>
+
+<p>An argument may itself be another function. That is done
+in <span class=h3>Starburst</span>.  The technique allows
+one mini-program to be attached to another.
+
+<p>The call to <code>starburst 3, stick</code> passes
+the function <code>stick</code> as the last argument.
+Inside <code>starburst</code>,
+<code>n</code> now stands for 3, and <code>shape</code>
+stands for the <code>stick</code> function.
+When <code>shape()</code> is written,
+<code>stick()</code> is called.  In the end
+<code>stick</code> is called three times,
+drawing three symmetric sticks.
+
+<p>Calling <code>starburst 30, stick</code> calls <code>stick</code>
+30 times, making a circular starburst of 30 sticks.
+
+<h3>Unnamed Inline Functions</h3>
+
+<p>Calling <code>starburst n, <u>something</u></code> means
+"Do <u>something</u> n times in a star."  We can
+provide any code as <u>something</u>, even if unnamed.
+
+<p>The call <code>starburst 10, -> fd 30; dot blue; bk 30</code>
+passes a lollipop-like function to <code>starburst</code>.  The
+function has no name &endash; it is defined inline to draw line
+with a blue dot at the far end.  The starburst function binds
+this unnamed function to its local parameter name
+<code>shape</code> and calls it 10 times. The result is a
+starburst with blue dots.
+
+<p>The last <code>starburst</code> call passes unnamed code that
+does another <code>starburst</code>.  The result is a starburst
+made out of starbursts!
+
+</div>
+
+</div>

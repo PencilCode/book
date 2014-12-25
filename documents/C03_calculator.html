@@ -1,0 +1,92 @@
+<div class="learning">
+<h2>3. Computers are Fine Calculators</h2>
+
+<p>A computer is better than any calculator at doing math.
+Let's try.
+
+<pre class="testpanel">
+> <u>2+33+66</u>
+  101
+</pre>
+
+<p>In CoffeeScript, plus and minus use the usual symbols + and &minus;.
+Times and divide are done using the * and / symbol.
+
+<pre class="testpanel">
+> <u>33333333 * 44444444 / 22</u>
+  67340065993266
+</pre>
+
+<p>Named values can be used in formulas.
+
+<pre class="testpanel">
+> <u>n=123456789</u>
+  123456789
+> <u>n*n*n</u>
+  1.8816763717891548e+24
+</pre>
+
+<p>The e+24 at the end is the way that large numbers
+are written in CoffeeScript.  It means
+1.8816763717891548 &times; 10<sup><span>24</span><span
+style="visibility:hidden">24</span></sup>.
+CoffeeScript calculates numbers with 15 digits of precision.
+
+<p>There are several ways to change a number.
+For example, += changes a variable by adding to it.
+
+<pre class="testpanel">
+> <u>n += 1</u>
+  123456790
+> <u>n</u>
+  123456790
+> <tt> </tt>
+
+</pre>
+
+<p>Some symbols to know:
+
+<p>
+<center>
+<table class="layout" style="width:auto;">
+<tr><td>
+<table class="border">
+<tr><th>code</th><th>meaning</th></tr>
+<tr><td>+</td><td>plus</td></tr>
+<tr><td>&minus;</td><td>minus</td></tr>
+<tr><td>*</td><td>times</td></tr>
+<tr><td>/</td><td>divide</td></tr>
+</table>
+</td>
+<td width=1%></td>
+<td>
+<table class="border">
+<tr><th>code</th><th>meaning</th></tr>
+<tr><td><nobr>x = 95</nobr></td><td>save 95 as x</td></tr>
+<tr><td><nobr>x is 24</nobr></td><td>is x equal to 24?</td></tr>
+<tr><td><nobr>x &lt; 24</nobr></td><td><nobr>is x less than 24?</nobr></td></tr>
+<tr><td><nobr>x &gt; 24</nobr></td><td><nobr>is x more than 24?</nobr></td></tr>
+</table>
+</td>
+<td width=1%></td>
+<td>
+<table class="border">
+<tr><th>code</th><th>meaning</th></tr>
+<tr><td>'a' in word</td><td><nobr>does the word contain an 'a'?</nobr></td></tr>
+<tr><td>String(num)</td><td><nobr>turns num into a string of digits</nobr></td></tr>
+<tr><td>Number(digits) </td><td>makes a number from a string</td></tr>
+<tr><td>n&nbsp;+=&nbsp;1</td><td>change&nbsp;n&nbsp;by&nbsp;adding&nbsp;one</td></tr>
+</table>
+</td></tr>
+</table>
+</center>
+
+<p>These operations can be combined.  
+<p>CoffeeScript obeys the same order of operations used in Algebra.
+
+<p>What will it say for <code>(2 * 3 + 3 * 5) / 7 - 1</code>?
+
+<p>What will it do when we try <code>'7' in String(99 * 123)</code>?
+
+<p>Try your own fancy formulas.  Don't worry if you get errors.
+</div>

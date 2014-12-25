@@ -1,0 +1,59 @@
+<div class="learning">
+<h2>10. Input with "read"</h2>
+
+<p>Our game is no good if players can't guess.  To let the player
+guess, type:
+
+<p>It works like this:
+
+<pre class="example">
+
+<u>await read defer guess</u>
+
+</pre>
+
+<p>"read" opens an input box and collects the input.
+
+<p>The "await" and "defer" commands work together to make
+the program wait until the read function is done.
+
+<p>"guess" is the name of the input collected by "read".
+
+<p>Try adding these lines to the
+program:
+
+<pre class="editor" data-format="1">
+write 'time to play hangman'
+secret = 'crocodile'
+show = 'aeiou'
+<u>write 'guess a letter'</u>
+<u>await read defer guess</u>
+<u>show += guess         </u>
+for letter in secret
+  if letter in show
+    append letter + ' '
+  else
+    append '_ '
+
+</pre>
+
+<p>Adding "write 'guess a letter'" will let the player know when to enter
+a guess.
+
+<p>The "show += guess" line adds the guess to the string of shown letters.
+
+<p>Let's run it.
+
+<pre class="example" style="font-family:inherit">
+
+time to play hangman
+guess a letter
+&rArr; <u style="border:1px solid; color: black; padding-left: 3px; padding-right: 150px;">c </u>
+c _ o _ o _ i _ e
+
+</pre>
+
+<p>When we run the program, it will show us where our
+guessed letter appears.
+</div>
+

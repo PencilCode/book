@@ -1,0 +1,38 @@
+<div class="blank">
+<br><br><br><br><br><br><br>
+<center><pre data-run="home();" style="color:transparent; width:550px;" data-width="550" data-noreform="1">
+# Random Tree example by mckoss
+bk 230
+
+Math.seedrandom 8
+
+rtree = (size) ->
+  if size < 5
+    return
+  fd size
+  rt 30
+  rtree(size * (random(5) + 5) / 10)
+  lt 60
+  rtree(size * (random(5) + 5) / 10)
+  rt 30
+  bk size
+
+
+
+
+
+
+pen green, 2
+rtree(100)
+
+
+
+
+
+
+
+
+# longish!
+</pre>
+</center>
+</div>

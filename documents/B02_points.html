@@ -1,0 +1,74 @@
+<div>
+<h2>2. Points</h2>
+
+<div>
+<h3>Dot Row</h3>
+<pre data-run="">
+rt 90; dot lightgray
+fd 30; dot gray
+fd 30; dot()
+fd 30
+
+</pre>
+</div>
+
+<div>
+<h3>Message</h3>
+
+<pre data-run="ht()">
+message = 'Hello You.'
+see 'message'
+see message
+
+</pre>
+</div>
+
+<div>
+<h3>Lighthouse</h3>
+<pre data-run="jump 30, -50">
+pen crimson
+fd 60; label 'GO'
+rt 30
+fd 40; rt 120; dot gold, 30
+fd 40; rt 30
+fd 60; rt 90
+fd 40; rt 90
+
+</pre>
+</div>
+
+<div>
+<h3>Smiley</h3>
+<pre data-run="jump 50, 0; speed = -> window.speed Infinity">
+speed 10
+dot yellow, 160
+fd 20
+rt 90
+fd 25
+dot black, 20
+bk 50
+dot black, 20
+bk 5
+rt 90
+fd 40
+pen black, 7
+lt 30
+lt 120, 35
+ht()
+
+</pre>
+</div>
+
+<div>
+<h3>Bullseye</h3>
+<pre data-run="speed Infinity; move 45, 0">
+x = 18
+see x * 5
+dot black, x * 5
+dot white, x * 4
+dot black, x * 3
+dot white, x * 2
+
+</pre>
+</div>
+</div>

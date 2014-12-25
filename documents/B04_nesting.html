@@ -1,0 +1,128 @@
+<div>
+<h2>4. Nesting</h2>
+
+<div>
+<h3>Violet</h3>
+<pre data-run="jump 60, 0">
+pen blueviolet
+for [1..5]
+  rt 72
+  for [1..3]
+    fd 50
+    rt 120
+fill lavender
+
+</pre>
+</div>
+
+<div>
+<h3>Combinations</h3>
+<pre data-run="jump 18, -10">
+for outside in [skyblue, violet, pink]
+  for inside in [palegreen, orange, red]
+    dot outside, 21
+    dot inside, 7
+    fd 25
+    rt 36
+
+</pre>
+</div>
+
+<div>
+<h3>Decorated Nest</h3>
+<pre data-run="jump -18, -25">
+pen turquoise
+for [1..10]
+  dot blue
+  for [1..4]
+    fd 50
+    rt 90
+  lt 36
+  bk 50
+
+
+
+</pre>
+</div>
+
+<div>
+<h3>Catalog</h3>
+<pre data-run="jump 130, 40; speed = ->">
+speed 100
+rt 90
+for color in [red, gold, green, blue]
+  jump 40, -160
+  for sides in [3..6]
+    pen path
+    for [1..sides]
+      fd 100 / sides
+      lt 360 / sides
+    fill color
+    fd 40
+
+
+
+</pre>
+</div>
+</div>
+
+<div class="primer">
+<p>Any code can be put in a loop, including another loop.
+
+<p>Nesting loops within loops can create beautiful effects.
+<span class=h3>Violet</span> arranges five triangles around
+a point by nesting a loop of 3 within a loop of 5.  The single
+line <code>fd 50</code> is repeated 15 times with
+perfect symmetry.
+
+<h3>Inner and Outer Loops</h3>
+
+<p>When loops are nested, the <em>inner</em> loop is the one
+that repeats most quickly.  Consider <span class=h3>Combinations</span>.
+
+<p>A single pass through a loop is called an <em>iteration</em>.
+On each iteration, the program draws a small dot within a big dot,
+then moves the turtle a bit.  The color of the small dot comes
+from the variable <code>inside</code>, which is the loop variable
+of the inner loop.  The large dot color comes from the outer loop
+variable <code>outside</code>.
+
+<p>Because the inner loop repeats most quickly, the small dot colors
+palegreen, orange, and red change on every iteration.
+
+<p>The outer loop repeats only after the inner loop has made
+a full set of iterations, so the <code>outside</code> dot colors
+change only after 3 inner iterations have been made.
+
+<h3>Nesting Carefully</h3>
+
+<p>The level of indent indicates whether code is within an inner
+loop or an outer loop, or not within a loop at all.
+
+<p>In <span class=h3>Decorated Nest</span>, <code>fd 50</code>
+is indented twice to be in the innermost loop.  It runs 40
+times in total.  However,
+<code>dot blue</code> is only indented once, so it is in the
+outer loop and done only 10 times.  Lines that are not indented,
+such as <code>pen turquoise</code>, are not looped,
+and they are done only once.
+
+<p>Loops can be nested as deeply as you like.
+<span class=h3>Catalog</span> shows a triply-nested loop.  Its
+innermost loop repeats by a number that varies (<code>sides</code>)
+because the loop range comes from the second level loop variable.
+
+<h3>Jumping and Path Filling</h3>
+
+<p>Some new functions:
+<p>
+<ul>
+<li><code>jump 40, -160</code> jumps right 40 and back 160.
+<li><code>pen path</code> traces with a special invisible path pen.
+<li><code>fill color</code> fills the invisible path with color.
+</ul>
+<p>Note that <code>jump</code> jumps right and up relative to the
+current direction and position of the turtle, and it does not draw
+with the pen or turn the turtle.  To jump to an absolute
+Cartesian coordinate, use <code>jumpto</code>.
+</div>

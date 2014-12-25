@@ -1,0 +1,147 @@
+<div>
+<h2>9. Input</h2>
+
+<div>
+<h3>Button Control</h3>
+<pre data-run="jump 20, -40" data-after="fd 20; rt 40; fd 20; dot 'darkslateblue'; rt 40; fd 70">
+pen sienna
+button 'R', -&gt; rt 10
+button 'F', -&gt; fd 10
+button 'D', -&gt; dot 'darkslateblue'
+
+</pre>
+</div>
+
+<div>
+<h3>Polygon to Order</h3>
+<pre data-run="jump 50, -20; ex = [green, 8]; read = (s, c) -> v = ex.shift(); write(s + ' ' + v); setTimeout(( -> c(v)), 0)">
+await read "Color?", defer color
+await read "Sides?", defer sides
+pen color
+for [1..sides]
+  fd 30
+  rt 360 / sides
+
+</pre>
+</div>
+
+<div>
+<h3>Guess My Number</h3>
+<pre data-run="turtle.remove(); write '<br><br>'; random = ((a) -> a[58]); fake = [50, 75, 64, 55, 59]; readnum = (c) -> v = fake.shift(); write('\u21D2 ' + v); c(v)">
+secret = random [1..100]
+turns = 5
+write "Guess my number."
+while turns > 0
+  await readnum defer pick
+  if pick is secret
+    write "You got it!"
+    break
+  if 1 <= pick < secret
+    write "Too small! "
+    turns = turns - 1
+  else if secret < pick <= 100
+    write "Too big! "
+    turns = turns - 1
+  if turns > 1
+    write "#{turns} left."
+  else if turns is 1
+    write "Last guess!"
+  else
+    write "Game over."
+    write "It was #{secret}."
+    break
+
+</pre>
+</div>
+
+<div>
+<h3>Polygon Revisited</h3>
+<pre data-run="jump 50, -20; ex = [red, 8]; read = (s, c) -> v = ex.shift(); write(s + ' ' + v); c(v)">
+read "Color?", (color) -&gt;
+  read "Sides?", (sides) -&gt;
+    pen color
+    for [1..sides]
+      fd 30
+      rt 360 / sides
+
+</pre>
+</div>
+</div>
+
+<div class="primer">
+<p>The examples on this page gather input using
+<em>callbacks</em>:
+<p><ul>
+<li><code>button</code> sets up a function to be called
+whenever a button is pressed.
+<li><code>read</code> calls a function once
+after the user answers a prompt.
+<li><code>readnum</code> is like read, but for numbers only.
+</ul>
+
+<h3>Awaiting Callbacks</h3>
+<p>If a program needs to wait until a callback is received,
+the <code>await</code> keyword: inside the <code>await</code>,
+the <code>defer</code> statement stands for the callback.
+After this callback receives a value, the program continues
+on the line after the <code>await</code>
+
+<h3>Randomness and Reassigning Variables</h3>
+
+<p>The <span class=h3>Guess My Number</span> example uses
+the <code>random</code> function to pick an unpredictable
+number from 1 to 100.  (The argument to <code>random</code>
+is a list of numbers to choose from.)
+
+<p>The game allows five turns to guess the number, tracked in
+the variable <code>turns</code>.
+The <em>assignment</em> <code>turns = turns - 1</code>
+means "set the value of <code>turns</code> to be
+one less than the old value of
+<code>turns</code>".
+
+<h3>Booleans and Conditionals</h3>
+
+<p>A true or false value is called a <em>boolean</em>.
+The expression <code>turns &gt; 1</code> is a boolean that is
+true when <code>turns</code> exceeds 1.  When used with
+conditional words <code>if</code> and <code>else</code>,
+booleans control program flow.  Other examples:
+
+<p><ul>
+<li><code>pick is secret</code>, true when the two variables have the same value.
+<li><code>pick isnt secret</code>, true when the two variables are unequal.
+<li><code>secret &lt; pick &lt;= 100</code>, true when <code>pick</code>
+exceeds <code>secret</code> but not 100.
+<li><code>secret &lt; pick and pick &lt;= 100</code>, the same thing
+written using <code>and</code>.
+<li><code>not (secret &gt;= pick or pick &gt; 100)</code>, again
+with <code>not</code> and <code>or</code>.
+</ul>
+
+<p>Statements to be be run conditionally should be
+indented underneath the <code>if</code> or <code>else</code>
+line that controls the condition.
+
+<h3>Callbacks Versus Deferrals</h3>
+
+<p>It is worth thinking about how <code>await</code> and
+<code>defer</code> work.  <code>defer</code> creates
+a callback function that, when called, continues
+the program after the <code>await</code> block.
+The <code>defer</code> function is called a
+<em>continuation</em> because it continues the program
+where it left off.
+
+<p>Chained callbacks to do multistep interactions
+can be done explicitly.
+<span class=h3>Polygon Revisited</span> does
+exactly the same thing as
+<span class=h3>Polygon To Order</span>: the
+nested function is called when <code>readnum</code>
+completes, and the innermost function is run
+after the second <code>readnum</code> is done.
+Think about how a loop such as in <span class=h3>Guess</span>
+could be done without <code>await</code>.
+</div>
+

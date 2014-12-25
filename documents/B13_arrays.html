@@ -1,0 +1,134 @@
+<div>
+<h2>13. Arrays</h2>
+
+<div>
+<h3>Story</h3>
+<pre data-run="turtle.remove(); ex = ['Yowzer', 'slowly']; read = (p, c) -> v = ex.shift(); if v then (write(p + ' ' + v); c(v)) else window.read(p, c).find('input').css('width', '100px')">
+story = [
+  'Exclamation?'
+  '!  he said '
+  'adverb?'
+  ' as he jumped into his convertible '
+  'noun?'
+  ' and drove off with his '
+  'adjective?'
+  ' wife.'
+  ]
+for i in [0...story.length] by 2
+  prompt = story[i]
+  await read prompt, defer answer
+  story[i] = answer
+write story.join ''
+
+</pre>
+</div>
+
+<div>
+<h3>Primes</h3>
+<pre data-run="turtle.remove()">
+primes = []
+candidate = 2
+while primes.length &lt; 10
+  composite = false
+  for p in primes
+    if candidate % p is 0
+      composite = true
+      break
+  if not composite
+    primes.push candidate
+    write candidate
+  candidate = candidate + 1
+
+</pre>
+</div>
+
+<div>
+<h3>Push and Pop</h3>
+
+<pre data-run="bk 90; write '<br>'" data-after="($('button').eq(b).trigger('click') for b in '111200111200113111311201112001131112011201113111'.split '')">
+stack = []
+pen green
+speed Infinity
+button 'R', -&gt; rt 30
+button 'F', -&gt; fd 10
+button 'Push', -&gt;
+  dot crimson
+  stack.push [getxy(), direction()]
+button 'Pop', -&gt;
+  if not stack.length then home(); return
+  [xy, b] = stack.pop()
+  jumpto xy
+  turnto b
+  dot pink
+
+</pre>
+</div>
+
+</div>
+
+<div class="primer">
+<p><em>Arrays</em> are objects that contain
+a sequence of values.  Throughout this book we have
+used arrays for iteration in <code>for</code> loops;
+arrays are used wherever a program needs to organize
+sequential data.
+
+<h3>Referencing and Joining Array Elements</h3>
+<p>The <code>i</code>th element of an array <code>story</code>
+is <code>story[i]</code>, and
+the number of elements is <code>story.length</code>.
+Indexing is zero-based, so the first element is
+<code>story[0]</code> and the last is
+<code>story[story.length - 1]</code>.
+<p>All the elements of an array can be joined together in one big
+string by <code>story.join ''</code>.  The argument is the "glue"
+put between the elements.
+
+<h3>Await and Defer</h3>
+<p>The statement <code>await read prompt, defer answer</code>
+pauses the program until the <code>read</code> is done.
+<code>defer answer</code> is a <em>continuation</em> function that
+resumes the program after putting
+the result in <code>answer</code>.
+
+<h3>Building Arrays with Push</h3>
+<p>A program can use <code>push</code> to add elements to the end
+of an array.
+<p><span class=h3>Primes</span> starts with <code>primes = []</code>
+as an empty array, and then it calls <code>primes.push candidate</code>
+to add each discovered prime to the array of divisors to check.
+This ancient algorithm is the <em>Sieve of Eratosthenes</em>.
+
+<h3>Stacks of Objects</h3>
+<p>Arrays have a <code>pop</code>
+method that reverses of <code>push</code> by removing and
+returning the last value.
+An array used by pushing and popping
+is called a <em>stack</em>.
+<p>It is common to use a stack of objects to undo
+a sequence.  In <span class=h3>Push and Pop</span>,
+<code>stack</code> is an array where every element is
+a turtle position.
+Each element is itself a two-element array containing
+an [x, y] (itself another array) and a numerical direction.
+
+<h3>Destructuring</h3>
+<p><ul>
+<li><code>getxy()</code> returns the turtle's current
+[x, y] as an array of two numbers.
+<li><code>direction()</code> returns the
+current direction of the turtle in degrees.
+<li><code>stack.push [getxy(), direction()]</code> reads
+the turtle's
+current xy coordinates and its current direction, forms an array
+with the results, and pushes it on the <code>stack</code>.
+<li><code>[xy, b] = stack.pop</code> removes the last element from
+the <code>stack</code> (the element is itself an array),
+and assigns the first item within of the element to the variable
+<code>xy</code> and the second item in element to <code>b</code>.
+</ul>
+<p>The form <code>[xy, b] = <u>value</u></code> is called a
+<em>destructuring assignment</em>.  It is a concise way
+to give local variable names to the elements of a short array.
+</div>
+

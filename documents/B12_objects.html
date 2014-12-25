@@ -1,0 +1,133 @@
+<div>
+<h2>12. Objects</h2>
+
+<div>
+<h3>Page Coordinates</h3>
+<pre data-run="bk 10">
+startpos =
+  pageX: 80
+  pageY: 10
+moveto startpos
+pen coral
+moveto
+  pageX: 30
+  pageY: 50
+moveto {pageX: 160, pageY: 50}
+
+</pre>
+
+</div>
+
+<div>
+<h3>Figure</h3>
+<pre data-run="move 30, -45">
+figure = [
+  {c: dimgray, x: 75,  y: 12}
+  {c: gray,    x: 0,   y: 78}
+  {c: dimgray, x: -75, y: 5}
+  {c: gray,    x: -35, y: -18}
+  {c: plum,    x: 0,   y: -62}
+  {c: gray,    x: 35,  y: -15}
+  {c: black,   x: 0,   y: 95}
+  ]
+for line in figure
+  pen line.c
+  move line.x, line.y
+
+</pre>
+</div>
+
+<div>
+<h3>Scoring</h3>
+<pre data-run="turtle.remove(); write '<br><br><br>'">
+points =
+  a: 1, e: 1, i: 1, l: 1, n: 1, o: 1, r: 1, s: 1, t: 1, u: 1
+  d: 2, g: 2, b: 3, c: 3, m: 3, p: 3, f: 4, h: 4, v: 4, w: 4, y: 4
+  k: 5, j: 8, x: 8, q: 10, z: 10
+score = (word) -&gt;
+  total = 0
+  for letter in word
+    total += points[letter]
+  write "#{word}: #{total}"
+score x for x in ['bison', 'armadillo', 'giraffe', 'zebra']
+
+</pre>
+</div>
+
+<div>
+<h3>Methods</h3>
+<pre data-run="turtle.remove(); write '<br>'">
+memo =
+  sum: 0
+  count: 0
+  add: (x) -&gt; @sum += x; @count += 1
+  stats: -&gt;
+    write "Total #{this.sum} / #{this.count}"
+    write "Average #{this.sum / this.count}"
+memo.add(n) for n in [40..50]
+memo.stats()
+</pre>
+</div>
+</div>
+
+
+<div class="primer">
+<p>An <em>object</em> is a value that has its own <em>properties</em>.
+Each property of an object associates a name with a value.
+The object <code>startpos</code> has two properties: <code>pageX</code>,
+which has value 80, and <code>pageY</code>, which is 10.
+<p>The <code>moveto</code> function understands objects with a
+<code>pageX</code> and <code>pageY</code> property as
+a "page coordinate."  (Page coordinates measure distances
+from the top-left corner of the page instead of from the center.)
+
+<h3>Object Literals</h3>
+<p>In the <span class=h3>Page Coordinate</span> example, we can
+see that there are two styles for writing object literals in
+CoffeeScript. Each property can be put on separate lines,
+indented (<em>YAML style</em>); or the properties can be
+enclosed in curly braces and separated by commas (<em>JSON style</em>).
+The two styles are equivalent, and the program uses both.
+
+<h3>Dot Notation</h3>
+<p>The properties of an object are referenced using a dot:
+<code>line.x</code> refers to the value of the property named "x"
+in the object named "line".
+<p>The most common use of objects is as a way of encapsulating
+a packet of related data together: in
+<span class=h3>Figure</span>, each
+object bundles the data needed for one line:
+a color and an x, y displacement.
+
+<h3>Associative Array Notation</h3>
+<p>A property name can be any string, so an object can be
+used as an <em>associative array</em> that defines a map from
+strings to values.
+<p>In <span class=h3>Scoring</span>, <code>points</code>
+maps letters to point values.  The square
+bracket notation <code>points[letter]</code> means
+"look up the value of the property whose name is
+the value of <code>letter</code>."
+
+<h3>Mutation and Methods</h3>
+<p>Properties of an object may be changed by assigning
+a value using the normal <code>=</code> or <code>+=</code> or
+<code>++</code> variable-setting operators.  (Changing a property
+of an object is sometimes called <em>mutation</em>.)
+<p>Properties of an object that happen to be functions are
+called <em>methods</em>.  Methods are particularly useful,
+because they can use the word <code>this</code> or the
+symbol <code>@</code> to refer to the object on which the
+method was called.
+<p>(Note that the line
+<code>memo.add for n in [40..50]</code>
+puts the <code>for</code>
+at the end of the statement in order to repeat it.)
+<p>It is common to write methods like <code>memo.add</code>
+that mutate several properties of the object at once, or
+methods like <code>memo.stats</code> that
+do computation summarizing the properties
+of the object.
+
+</div>
+

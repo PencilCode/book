@@ -1,0 +1,72 @@
+<div>
+<h2>22. Events</h2>
+
+<div>
+<h3>Shift Click</h3>
+<pre data-run="pen blue; move -30, -20; pen off; move 50, 40; pen on; move 20, 5; move 30, -60; move -30, 35; pen off; move 40, 20; pen on; move 20, -43; move -22, -5; move 50, 40">
+$(document).click (event) -&gt;
+  see event
+  if event.shiftKey
+    pen blue
+  else
+    pen null
+  moveto event
+
+</pre>
+</div>
+
+<div>
+<h3>Arrow Keys</h3>
+<pre data-run="move 40, 0; window.keydown = (fn) -> e = [L,L,L,U,U,U,U,R,R,R,R,R,R,R,R,R,R,R,R,R,R,R,U,U,U,U,U,U,R,R,R,R,R,R,R,R,D,D,D,D,R,R,R,R,R,R,R,R,R,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U]; fn({which:e.shift()}) while e.length > 0">
+pen plum
+[L, R, U, D] = [37, 39, 38, 40]
+keydown (event) -&gt;
+  if event.which is L then lt 5
+  if event.which is R then rt 5
+  if event.which is U then fd 5
+  if event.which is D then bk 5
+
+</pre>
+</div>
+
+<div>
+<h3>Can't Touch This</h3>
+<pre data-run="turtle.remove()" data-after="t.lt 23; t.bk 13">
+t = write "&lt;button&gt;Touch This&lt;/button>"
+t.speed Infinity
+t.moveto document
+t.mousemove (event) -&gt;
+  t.rt random(91) - 45
+  while t.touches(event)
+    t.bk 1
+
+</pre>
+</div>
+
+<div>
+<h3>Magic Hat</h3>
+<pre data-run="turtle.home()">
+speed Infinity
+t = turtle
+start = ->
+  t.wear '/img/transparent-magic-hat', 50
+  tick off
+  t.click (event) -> play()
+play = ->
+  t.wear '/img/transparent-bunny', 50
+  tick ->
+    t.moveto random 'position'
+  t.click (event) -> start()
+start()
+
+</pre>
+</div>
+
+</div>
+
+<div class="primer">
+<p>About events.  TBD.
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+</div>
+

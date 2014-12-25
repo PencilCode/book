@@ -1,0 +1,42 @@
+<div class="learning">
+<h2>4. Strings and Numbers</h2>
+
+<p>What do you think happens when we try to do addition with words?
+
+<pre class="testpanel">
+> <u>'dog' + 'cat'</u>
+  dogcat
+> <u>'dog' + 5</u>
+  dog5
+> <u>34 + 5</u>
+  39
+> <u>'34' + 5</u>
+  345
+> <tt> </tt>
+
+</pre>
+
+<p>When we put something inside quotes, CoffeeScript treats
+it like a string of letters, even if it is all digits!
+That is why '34' + 5 is 345.  Quoted values like this are
+called "strings."
+
+<p>The Number() function can be used to convert a string to a number,
+so that we can do ordinary arithmetic with it.
+
+<p>The String() function is opposite, and turns numbers into strings.
+
+<pre class="testpanel">
+> <u>Number('34') + 5</u>
+  39
+> <u>String(34) + 5</u>
+  345
+> <u>Number('dog') + 5</u>
+  NaN
+> <tt> </tt>
+
+</pre>
+
+<p>If we try to convert a string to a number in a way that does not
+make sense, we get NaN, which stands for "Not a Number".
+</div>

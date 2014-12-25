@@ -1,0 +1,140 @@
+<div>
+<h2>19. Concurrency</h2>
+
+<div>
+<h3>Race Condition</h3>
+<pre data-run="moveto(0, -50); ohatch = window.hatch; $.fn.play = ( -> ); $.fn.dot = ( -> ); ort = $.fn.rt; olt = $.fn.lt; $.fn.rt = ((x, y) -> ort.call this, y and x * .8 or x, y); $.fn.lt = ((x, y) -> olt.call this, y and x * .8 or x, y); hatch = -> r = ohatch.apply(null, arguments).moveto(0, -50);">
+b = hatch blue
+r = hatch red
+b.lt 90; b.pen blue
+b.play 'g'
+b.rt 170, 50
+b.dot 50, blue
+r.rt 90; r.pen red
+r.play 'd'
+r.lt 170, 50
+r.dot 50, red
+
+</pre>
+</div>
+
+<div>
+<h3>Line Follower</h3>
+<pre data-run="home(); scale 0.8; speed = (->); c = 100; done = ( (cb) -> if c > 0 then (--c; window.done(cb)));">
+dot orange, 220
+dot white, 180
+jump 100, 0
+pen skyblue
+while true
+  fd 3 + random 3
+  await done defer()
+  if touches orange
+    lt 5
+  else
+    rt 5
+
+</pre>
+
+</div>
+
+
+<div>
+<h3>Shared Memory</h3>
+
+<pre data-run="moveto -50, -60; c = 12; done = ( (cb) -> if c then --c; cb(); if c <= 8 then (if c <= 4 then lt 20 else rt 30)); r = [30,-20]; read = ( (cb) -> if r.length then ( write '&rArr; ' + r.shift(); cb(0)) else window.read(cb))">
+shared = { d: 0 }
+do ->
+  while true
+    await read defer shared.d
+do ->
+  pen red
+  while true
+    fd 10
+    await done defer()
+    rt shared.d
+
+</pre>
+</div>
+
+<div>
+<h3>Message Passing</h3>
+
+<pre data-run="jump 20, -30" data-after="$('button').trigger('click') for x in [1..6]">
+button 'send color', ->
+  send 'go', random color
+do ->
+  for x in [1..25]
+    await recv 'go', defer c
+    pen c
+    fd 50
+    rt 88, 10
+</pre>
+</div>
+</div>
+
+<div class="primer">
+<p>A <em>thread</em> is a sequence in a program
+that runs in parallel to other code.
+Iced CoffeeScript has <em>cooperative threads</em>,
+which means that:
+<p><ul>
+<li>Only one thread runs at once.
+<li>Concurrency is done by switching between threads.
+<li>Switching is only done at <code>await</code> statements.
+</ul>
+<p>Some new idioms that appear in these examples:
+<p><ul>
+<li><code>b = hatch blue</code> hatches a new turtle, wearing blue.
+<li><code>b.lt 90</code> tells the turtle <code>b</code> to turn.
+<li><code>await done defer()</code> waits until turtles stop moving.
+<li><code>send 'go'</code> sends a message 'go'.
+<li><code>await recv 'go', defer()</code> waits until 'go' is received.
+<li><code>while true</code> repeats the enclosed code forever.
+<li><code>touches orange</code> tests if the turtle touches
+any orange.
+<li><code>do -></code> runs the enclosed code as a function.
+</ul>
+
+<h3>Multiple Turtles</h3>
+
+<p>In <span class=h3>Race Condition</span>,
+the second turtle to arrive will draw a dot that covers
+the first dot. The turtles run concurrently, and
+it is is not possible to predict which parallel turtle
+will arrive first.
+
+<p>If order is important, insert <code>await b.done defer()</code>
+before calling <code>r</code>.  The program will
+wait for <code>b</code> to finish before moving
+the red turtle.
+
+<p>An <code>await</code> only pauses the current function, not
+its caller. That is why the last two
+examples run threads in parallel.
+
+<h3>Synchronization</h3>
+
+<p>It is important to let a turtle finish moving before reading
+its state.  If <span class=h3>Line Follower</span>
+did not <code>await done defer()</code> to let the turtle finish
+moving forward before checking the touched color, the turtle
+would still be in its start position when check is done.
+
+<p>Even if not reading turtle state, an infinite
+<code>while true</code> loop should contain an
+<code>await done defer()</code> so that other threads
+get a turn.
+
+<h3>Communicating Between Threads</h3>
+
+<p>Threads can communicate using <em>shared memory</em>
+(sharing a common variable) or <em>message passing</em>
+(sending a value from one to the other).  If a shared
+variable changes very quickly or slowly, the thread
+that reads the variable can skip a value or read the
+same value twice.  On the other hand, a thread that
+uses <code>await recv</code> will
+wait to receive each message sent by <code>send</code>
+exactly once without duplication or omission.
+
+</div>

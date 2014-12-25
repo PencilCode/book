@@ -1,0 +1,128 @@
+<div>
+<h2>11. Computation</h2>
+
+<div>
+<h3>Power</h3>
+<pre data-run="ht()">
+power = (x, p) -&gt;
+  answer = 1
+  answer *= x for i in [0...p]
+  return answer
+for n in [1..5]
+  write power(2, n)
+
+</pre>
+</div>
+
+<div>
+<h3>Built-in Power</h3>
+<pre data-run="ht()">
+write Math.pow(2, 5)
+write Math.pow(2, 0.5)
+
+</pre>
+</div>
+
+<div>
+<h3>Factorial</h3>
+<pre data-run="ht(); $('body').css { overflow: 'hidden' }">
+factorial = (x) -&gt;
+  if x &lt; 1 then 1
+  else x * factorial(x - 1)
+for x in [1..4]
+  write factorial x
+
+</pre>
+</div>
+
+<div>
+<h3>Fibonacci</h3>
+<pre data-run="ht()">
+fib = (n) -&gt;
+  if n &lt;= 2
+    1
+  else
+    fib(n - 1) + fib(n - 2)
+for x in [3..8]
+  write fib x
+
+</pre>
+</div>
+
+<div>
+<h3>Complex</h3>
+<pre data-run="ht(); speed = (->); scale = (-> window.scale 65); moveto = ((x, y) -> window.moveto(x + 0.7, y))">
+mandelbrot = (n, c, z) -&gt;
+  if n is 0 or z.r*z.r + z.i*z.i &gt; 4
+    return n
+  else return mandelbrot n - 1, c,
+    r: c.r + z.r*z.r - z.i*z.i
+    i: c.i + 2*z.r*z.i
+speed 100
+ht()
+scale 150
+s = 0.05
+for x in [-2..1] by s
+  for y in [-1.5..1.5] by s
+    n = mandelbrot 20, {r:x,i:y}, {r:x,i:y}
+    moveto x, y
+    dot hsl(100, 1, n/20), s
+
+</pre>
+</div>
+</div>
+
+
+<div class="primer">
+<p>The <code>Math</code> object provides constants and functions
+you would find on a scientific calculator.  A partial list:
+<p><ul>
+<li><code>Math.E</code> the natural logarithm base, 2.71828...
+<li><code>Math.PI</code> the circular ratio, 3.14159...
+<li><code>Math.abs(x)</code> absolute value of x.
+<li><code>Math.round(x)</code> round x to the <em>nearest</em> integer.
+<li><code>Math.floor(x)</code> round x <em>down</em>.
+<li><code>Math.ceil(x)</code> round x <em>up</em>.
+<li><code>Math.max(x, y)</code> the greater of x and y.
+<li><code>Math.min(x, y)</code> the lesser of x and y.
+<li><code>Math.sqrt(x)</code> the square root of x.
+<li><code>Math.pow(x, y)</code> x raised to the power y.
+<li><code>Math.log(x)</code> the natural logarithm of x.
+<li><code>Math.sin(x)</code> the sine of x (in radians).
+<li><code>Math.cos(x)</code> the cosine of x (in radians).
+<li><code>Math.atan(x)</code> the arctangent of x (in radians).
+</ul>
+<h3>Returning Values, Recursion, and Base Cases</h3>
+<p>Other mathematical functions can be built yourself.
+The output, or <em>return value</em>, of a CoffeeScript
+function is the last value computed in the function.
+The statement <code>return n</code> ends a function
+with the return value <code>n</code>.
+<p>The functions <code>fib</code> and <code>factorial</code>
+are are <em>recursive</em>: they refer to themselves in their own
+definition.  When writing a recursive function it is
+important that the recursion ends at a <em>base case</em>
+(such as where <code>fib</code> defines the value as 1 when
+<code>n <= 2</code>).
+<p>Recursion without a base case will loop forever and freeze up.
+There must be initial values for which the function does not
+depend on itself.
+
+<h3>Generalizing</h3>
+<p>Although the built-in numbers represent reals,
+complex numbers can be represented as pairs of numbers.
+In <span class=h3>Mandelbrot</span>,
+the parameters <code>c</code> and <code>z</code>
+are complex numbers represented by objects that
+each contain an <code>r</code> and <code>i</code> property.
+<p>That example uses <code>scale 150</code> to grow the turtle
+by 150-fold.  The <code>hsl</code> function
+generates colors based on hue, saturation, and lightness.
+<p>Mathematical algorithms have a long and fascinating history.
+It is worth researching how Mandelbrot's remarkable
+fractal works; how Gauss's Gamma function generalizes
+factorials to all numbers; and how the Fibonacci
+sequence relates to sunflower seeds and the golden mean.
+
+</div>
+

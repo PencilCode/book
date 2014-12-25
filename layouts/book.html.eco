@@ -1,0 +1,9 @@
+---
+layout: default
+---
+<style>
+.primer { display: none; }
+.turtlebits { display: block; }
+</style>
+
+<%- @content %>

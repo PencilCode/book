@@ -1,0 +1,116 @@
+<div>
+<h2>18. Motion</h2>
+
+<div>
+<h3>Bounce</h3>
+<pre data-run="speed Infinity; tick = (x, c) -> c() for x in [1..100]">
+speed Infinity
+pen purple
+vy = 10
+tick 20, -&gt;
+  move 1, vy
+  if inside(window)
+    vy -= 1
+  else
+    vy = Math.abs(vy) * 0.9
+
+</pre>
+</div>
+
+<div>
+<h3>Tag</h3>
+<pre data-run="write '<br>'; tick = (x, f) ->;"
+data-after="b.move(10,20).rt(20); rt(70);">
+speed Infinity
+write "Catch blue!"
+b = hatch blue
+bk 100
+tick 10, ->
+  turnto lastmousemove
+  fd 5
+  b.turnto 45 + direction b
+  b.fd 6
+  if b.touches(turtle)
+    write "You win!"
+    tick off
+  else if not b.touches(window)
+    write "Blue got away!"
+    tick off
+
+</pre>
+</div>
+
+<div>
+<h3>Orbit</h3>
+<pre data-run="moveto -80, 0; tick = ((x, c) -> c() for x in [1..200]); ohatch = window.hatch; hatch = ( (c) -> return ohatch.apply(null, arguments).moveto(-80, 0).st())">
+speed Infinity; pen orange
+G = 100
+v = [0, 1]
+sun = hatch(gold)
+sun.move G, 0
+tick 100, ->
+  sun.moveto lastclick
+  s = sun.getxy()
+  p = getxy()
+  d = distance(sun)
+  d3 = d * d * d
+  if d3 > 0 then for i in [0..1]
+    v[i] += G * (s[i] - p[i]) / d3
+  move v[0], v[1]
+
+</pre>
+</div>
+
+</div>
+
+<div class="primer">
+<p>The thee examples on this page demonstrate how to
+simulate motion: a bouncing turtle, a game of tag,
+and an orbiting planet.
+<h3>Newtonian Simulations</h3>
+<p>When Newton worked out his famous laws of motion, he discovered
+that the speed and direction of an object - its <em>velocity</em> -
+remains unchanged as long as no forces act on the object.  And he
+discovered that forces do not directly change the position of
+an object: forces alter an object's velocity.
+<p>When simulating motion, the velocity of an object can be represented
+by a small change in position for each tick in time.  An undisturbed
+object moves the same distance and direction on each tick, and a
+forced object will alter its velocity on each tick.
+<p>In <span class=h3>Bounce</span>, the two variables <code>vx</code>
+and <code>vy</code> are the x and y components of velocity.  The
+gentle acceleration due to gravity is simulated by a slight
+change in velocity on each tick: <code>vy -= 1</code>.
+The sudden acceleration of a bounce off the floor
+(with some loss in energy) is represented by a sign change in velocity:
+<code>vy = Math.abs(vy) * 0.9</code>.
+<p>In <span class=h3>Tag</span>, velocity is simulated by
+moving each turtle forward 5 or 6 on each tick.  The physics
+of this game are designed for fun: the main
+turtle picks its direction by pointing at the last position of
+the mouse.  The blue turtle runs away by adding 45 degrees to the
+<code>direction</code> from the main turtle to itself.
+<p><span class=h3>Orbit</span> is a representation of Newton's
+most profound discovery: that the gravity makes objects fall
+to the ground is the same force that governs the motions of
+the planets.  In the orbital simulator, the x and y components
+of velocity are in the array <code>v</code>, and the velocity
+is accelerated on each tick using the formula
+<code>v[i] += G * (s[i] - p[i]) / d3</code>, where
+s is the position of the sun, p is the position of the planet,
+and d3 is the cube of the distance between them.
+<p>Click to move the sun.  Experiment with elliptical
+and hyperbolic orbits.  Notice the planet moves more
+quickly when it is near the sun.
+
+<h3>Motion and Hit Testing Functions</h3>
+
+<ul>
+<li><code>move x, y</code> slides right by x and forward by y.
+<li><code>getxy()</code> returns the absolute [x, y] position of the turtle.
+<li><code>b.touches(turtle)</code> true if <code>b</code> touches the main turtle.
+<li><code>inside(window)</code> true if the main turtle is fully inside the window.
+<li><code>direction(b)</code> the direction from the turtle to <code>b</code>.
+<li><code>distance(sun)</code> the distance from the turtle to <code>sun</code>.
+</ul>
+</div>

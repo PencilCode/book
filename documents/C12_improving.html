@@ -1,0 +1,64 @@
+<div class="learning">
+<h2>12. Improving our Game</h2>
+
+<p>We can already play our game.
+Now we should fix it up to make it fun.
+
+<ol>
+<li>The player should win right away when there are no missing letters.
+<li>The player should only lose a turn on a wrong guess.
+<li>When the player loses, the game should tell the secret.
+</ol>
+
+<p>Try this:
+
+<pre class="editor" data-format="1">
+write 'time to play hangman'
+secret = 'crocodile'
+show = 'aeiou'
+turns = 5
+
+while turns &gt; 0
+<u>  blanks = 0</u>
+  for letter in secret
+    if letter in show
+      append letter + ' '
+    else
+      append '_ '
+<u>      blanks += 1</u>
+  
+<u>  if blanks is 0    
+    write 'You win!'
+    break           </u>
+  
+  write 'guess a letter'
+  await read defer guess
+  show += guess
+  
+<u>  if guess not in secret</u>
+    turns -= 1
+<u>    write 'Nope.'                    
+    write turns + ' more turns'      
+    if turns is 0                    
+      write 'The answer is ' + secret</u>
+
+</pre>
+
+<p>Each time the word is printed, the "blanks"
+number starts at zero and counts up the number of blanks.
+If it ends up at zero, it means there are no blanks.
+So the player has guessed every letter and has won!
+In that case, the "break" command breaks out of the
+"while" section early, even though there are still turns
+left.
+
+<p>The "if guess not in secret" line checks if the
+guess was wrong.  We only
+count down the "turns" if our guess was wrong.
+
+<p>When we guess wrong, we also print a bunch of
+messages like "Nope" and how many more turns we have.
+When we are wrong for the last time we
+print the secret.
+</div>
+

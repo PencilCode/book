@@ -1,0 +1,89 @@
+<div>
+<h2>23. Slicing</h2>
+
+<div>
+<h3>Choices</h3>
+<pre data-run="turtle.remove();" data-after="$('body,div').css { fontSize: '14px', lineHeight: '16px', verticalAlign: 'top' }">
+choices = (menu, sofar = []) -&gt;
+  if menu.length is 0
+    write sofar.join ' '
+  else for item in menu[0]
+    choices menu[1...],
+      sofar.concat item
+
+choices [
+  ['small', 'medium', 'large']
+  ['vanilla', 'chocolate']
+  ['cone', 'cup']
+]
+
+</pre>
+</div>
+
+<div>
+<h3>Shuffle</h3>
+<pre data-run="turtle.remove(); write '<br><br><br><br>'">
+suits = ['\u2663', '\u2666', '\u2665', '\u2660']
+deck = []
+for v in [2..10].concat ['J', 'Q', 'K', 'A']
+  deck.push (v + s for s in suits)...
+shuffle = (d) -&gt;
+  for i in [1...d.length]
+    choice = random(i + 1)
+    [d[i], d[choice]] = [d[choice], d[i]]
+deal = (d, n) -&gt; d.splice(-n)
+
+shuffle deck
+for [1..3]
+  write deal(deck, 5).join('/')
+
+</pre>
+</div>
+
+<div>
+<h3>Caesar Cipher</h3>
+<pre data-run="turtle.remove();write '<br><br><br><br>'" data-after="box.val('attack at dawn').trigger('keyup')">
+key = 13
+a2z = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+rot = a2z[key...].concat a2z[...key]
+box = write '&lt;input&gt;'
+out = write ''
+
+box.keyup -&gt;
+  result = for c in box.val()
+    char = c.toUpperCase()
+    if char in a2z
+      rot[a2z.indexOf char]
+    else
+      char
+  out.text result.join ''
+
+</pre>
+</div>
+
+</div>
+
+
+<div class="primer">
+<p>About slicing.  TBD.
+
+<p>The <code>concat</code> method creates an array that
+joins the elements of two arrays together.
+<code>[2...10].concat ['J', 'Q', 'K', 'A']</code> forms
+an array starting with the numbers 2 through 10 followed
+by the strings "J", "Q", "K", and "A".
+<p>The parenthesized loop <code>(v + s for s in suits)</code>
+is a <em>list comprehension</em> that creates an array
+using a for loop.  The array consists of each value
+computed by the loop, in sequence.
+
+<p><span class=h3>Shuffle</span> applies the <em>Fisher-Yates</em>
+algorithm for shuffling a deck of cards.  The algorithm is called
+a "perfect shuffle" because every permutation of the deck is
+equally likely.
+
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+</div>
+

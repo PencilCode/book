@@ -1,0 +1,53 @@
+<div class="learning">
+<h2>9. Using "if" to Choose</h2>
+
+<p>In our hangman game, we should show where
+any guessed letters are.
+To decide whether to print a blank line or a letter,
+we will need to use "if" and "else".
+
+<p>Add four new lines to our program:
+
+<pre class="editor" data-format="1">
+write 'time to play hangman'
+secret = 'crocodile'
+<u>show = 'aeiou'</u>
+
+for letter in secret
+<u>  if letter in show    
+    append letter + ' '
+  else                 </u>
+    append '_ '
+
+</pre>
+
+<p>Don't forget to line everything up, and remember to save it.
+
+<p>What happens when you run it?
+It reveals all the letters in "show": all the vowels.
+
+<p>Our screen looks like this:
+
+<pre class="example">
+
+time to play hangman
+_ _ o _ o _ i _ e
+
+</pre>
+
+<p>Here is how it works.
+
+<p>The line "<em>if</em> letter in show" makes a choice.
+<ol>
+<li>If the letter is among our shown, it appends the letter together
+with a space after it.
+<li>Otherwise ("else") it appends a little underscore with a space after it.
+</ol>
+
+<p>Since the whole thing is indented under the
+"<em>for</em> letter in secret</em>,"
+this choice is repeated for every letter.
+
+<p>Check the spelling and spacing and punctuation if
+you get errors.  Take your time to get it to work.
+</div>

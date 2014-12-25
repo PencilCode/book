@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title><%= @getPreparedTitle() %></title>
+<meta name="description" content="<%= @getPreparedDescription() %>" />
+<meta name="keywords" content="<%= @getPreparedKeywords() %>" />
+
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:400,700,900|Source+Code+Pro:400">
+<%- @getBlock('styles').add(@site.styles).toHTML() %>
+
+</head>
+<body class="<%- @document.bodyclass or 'reference' %>">
+<%- @content %>
+
+<%- @getBlock('scripts').add(@site.scripts).toHTML() %>
+</body>
+</html>

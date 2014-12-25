@@ -1,0 +1,61 @@
+<div class="learning">
+<h2>8. Using "for" to Repeat</h2>
+
+<p>We can repeat steps in a program with the "for" command.
+
+<p>Try adding three lines to the end of our program
+so that it looks like this:
+
+<pre class="editor" data-format="1">
+write 'time to play hangman'
+<u>secret = 'crocodile'</u>
+<u>for letter in secret</u>
+<u>  write letter      </u>
+
+</pre>
+
+<p>You should see this:
+
+<pre class="example" style="font-family:inherit">
+time to play hangman
+c
+r
+o
+c
+o
+d
+i
+l
+e
+</pre>
+
+<p>The program is saying: for every letter
+in the secret, write letter.
+So the computer repeats "write letter" nine
+times, once for each letter.
+
+<p>If it doesn't work, check the program and
+make sure the line after the <em>for</em> is indented; that is
+how CoffeeScript knows which line to repeat.
+
+<p>Once you have the hang of it, keep the word secret by changing
+the program to write underscores instead of letters:
+
+<pre class="editor" data-format="1">
+write 'time to play hangman'
+for letter in secret
+<u>  append '_ '</u>
+
+</pre>
+
+<p>Notice how "<em>append</em>" instead of "<em>write</em>" puts text
+on the same line instead of starting a new line each time:
+
+<pre class="example" style="font-family:inherit">
+
+time to play hangman
+_ _ _ _ _ _ _ _ _
+
+</pre>
+</div>
+

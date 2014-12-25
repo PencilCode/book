@@ -1,0 +1,66 @@
+<div class="learning">
+<h2>14. Picking a Random Secret</h2>
+
+<p>The only problem with the game is that it always plays
+the same secret word.  We should use the <em>random</em>
+function to choose a random word.
+
+<p>Change the line that sets the secret
+so that it looks like this:
+
+<pre class="editor" data-format="1">
+...
+write 'time to play hangman'
+<u>secret = random ['tiger', 'panda', 'mouse']</u>
+show = 'aeiou'
+...
+
+</pre>
+
+<p>The square brackets [ ] and commas make a list, and the random
+function picks one thing randomly from the list.
+
+<p>Of course, we can
+make the list as long as we like.  Here is a longer list:
+
+<pre class="editor" data-format="1">
+...
+write 'time to play hangman'
+<u>secret = random [
+  'crocodile'    
+  'elephant'     
+  'penguin'      
+  'pelican'      
+  'leopard'      
+  'hamster'      
+]                </u>
+...
+
+</pre>
+
+<p>The brackets do not have to be on the same line, but we
+do need two!  When we list items on their own lines, the commas
+are optional.
+<center><pre data-run="home();" style="color:transparent; width:300px;" data-width="300" data-noreform="1">
+# scatter
+ht()
+hatch(30).plan ->
+  @wear random color
+  @rt random 360
+  @fd 50 * abs random normal
+
+
+
+
+
+
+
+
+
+
+
+# 300 pixels!
+</pre>
+</center>
+</div>
+

@@ -1,0 +1,153 @@
+<div>
+<h2>3. Loops</h2>
+
+<div>
+<h3>Rectangle</h3>
+<pre data-run="bk 30">
+pen green
+for d in [50, 100, 50, 100]
+  fd d
+  rt 90
+
+</pre>
+</div>
+
+<div>
+<h3>Rainbow</h3>
+<pre data-run="bk 30">
+for c in [
+    red
+    orange
+    yellow
+    green
+    blue
+    violet
+    ]
+  pen c
+  rt 360, 50
+  fd 10
+
+</pre>
+</div>
+
+<div>
+<h3>Range</h3>
+<pre data-run="turtle.remove()">
+see [1..5]
+see [1...5]
+
+</pre>
+</div>
+
+
+<div>
+<h3>Square Loop</h3>
+<pre data-run="bk 46">
+pen blue
+for [1..4]
+  fd 100
+  rt 90
+
+
+
+</pre>
+</div>
+
+<div>
+<h3>Gold Star</h3>
+<pre data-run="jump 30, -46">
+pen gold, 3
+for [1..5]
+  fd 100
+  rt 2 * 360 / 5
+
+
+
+</pre>
+</div>
+
+<div>
+<h3>Descending Loop</h3>
+<pre data-run="bk 5">
+pen purple
+for x in [50..1] by -1
+  rt 30, x
+
+
+
+</pre>
+</div>
+</div>
+
+<div class="primer">
+<p>To draw a rectangle, we could write the following.
+<p>
+<code>fd 50; rt 90; fd 100; rt 90; fd 50; rt 90; fd 100; rt 90</code>
+<p>But that is wordy and repetitive.
+The program <span class=h3>Rectangle</span> is clearer
+because it uses a <code>for</code> loop to repeat the <code>fd</code>
+and <code>rt 90</code> commands.
+
+<h3>The Parts of a Loop</h3>
+
+<p>Look closely at <span class="h3">Rectangle</span>.
+The <code>for</code> loop has three parts:
+<p><ul>
+<li>The <em>loop variable</em> <code>d</code>.
+<li>The <em>loop list</em> <code>[50, 100, 50, 100]</code>.
+<li>The <em>loop body</em> <code>fd d; rt 90</code>.
+</ul>
+
+<p>The prepositions <code>for</code> and <code>in</code>
+are special words in the language: they introduce a loop
+variable and its loop list.
+
+<p>Since the list contains four numbers,
+the loop repeats the body four times: once with <code>d</code>
+set to 50; then once with <code>d</code> as 100; then again
+as 50; then finally as 100 again.
+
+<h3>Loop Lists and Ranges</h3>
+
+<p>A list is written by surrounding items with square brackets
+<code>[</code> <code>]</code>.
+
+<p>If you write list items on a single line, separate them
+with commas.  Longer lists like the list of
+colors in <span class=h3>Rainbow</span> can be written
+on multiple lines for clarity; commas are not needed at
+linebreaks.
+
+<p>A range of numbers can be listed by putting
+two dots <code>..</code> between the lowest and highest numbers.
+If you use three dots <code>...</code>, the effect is similar,
+but the last number will not be included in the list.
+
+<h3>Indenting is Important</h3>
+
+<p>The commands in the loop are indented underneath the
+<code>for</code>
+line to show that they are inside the loop. It is important to
+indent lines inside the loop body evenly with each other.
+
+<p>List items should also be indented evenly with each
+other when written on separate lines.
+
+<h3>Simple Loops and Stride</h3>
+
+<p>Notice that the loop variable does not need
+to be used inside
+the body of the loop.  In
+<span class=h3>Square Loop</span> and
+<span class=h3>360 Loop</span>, the variable
+<code>x</code> is
+not used except to count the number of repetitions.
+
+<p>In <span class=h3>Descending Loop</span>, the
+word <code>by</code> after the list denotes
+a <em>stride</em>, which is how much to skip
+forward when looping through the list.  Looping
+<code>by 2</code> would skip every other number.
+Looping <code>by -1</code> counts down.
+
+</div>

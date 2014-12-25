@@ -1,0 +1,58 @@
+<div>
+<h2>26. Intelligence</h2>
+
+<div>
+<h3>Tic Tac Toe</h3>
+
+<pre data-run="turtle.remove(); setTimeout = ((c) -> c()); $.fn.home = -> @moveto(document); @move 0, 150" data-after="$('td').eq(4).trigger('click')">
+grid = table 3, 3,
+  {width: 48, height: 48, font: "32px Arial Black", background: "wheat"}
+grid.home()
+board = [0, 0, 0,   0, 0, 0,   0, 0, 0]
+
+grid.cell().click -&gt;
+  move = grid.cell().index this
+  return unless winner() is 0 and board[move] is 0
+  board[move] = 1
+  $(this).text 'X'
+  setTimeout respond, 500
+
+respond = -&gt;
+  response = bestmove(-1).move
+  if response?
+    board[response] = -1;
+    grid.cell().eq(response).text 'O'
+  colorwinner()
+
+bestmove = (player) -&gt;
+  win = winner()
+  if win isnt 0 then return {move: null, advantage: win}
+  choices = {'-1': [], '0': [], '1': []}
+  for think in [0..8] when board[think] is 0
+    board[think] = player
+    outcome = bestmove(-player).advantage
+    choices[outcome].push {move: think, advantage: outcome}
+    board[think] = 0
+  for favorite in [player, 0, -player] when choices[favorite].length
+    return random choices[favorite]
+  return {move: null, advantage: 0}
+
+rules = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+
+winner = -&gt;
+  for row in rules
+    if board[row[0]] and board[row[0]] is board[row[1]] is board[row[2]]
+      return board[row[0]]
+  return 0
+
+colorwinner = -&gt;
+  for row in rules
+    if board[row[0]] and board[row[0]] is board[row[1]] is board[row[2]]
+      for n in row
+        grid.cell().eq(n).css {color: red}
+
+</pre>
+
+</div>
+</div>
+

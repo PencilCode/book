@@ -1,0 +1,144 @@
+<div>
+<h2>16. Sets</h2>
+
+<div>
+<h3>Scatter</h3>
+<pre data-run="">
+turtle.remove()
+s = hatch 15, orange
+s.pen gold
+s.plan -&gt;
+  this.rt random 360
+  this.fd Math.abs(20 * random normal)
+
+</pre>
+</div>
+
+<div>
+<h3>Turtle Race</h3>
+<pre data-run="speed Infinity; $.fn.speed = (-> this.c = 50); $.fn.done = ( (cb) -> if this.c then --this.c; cb() ); moveto -100, -150; ohatch = window.hatch; hatch = -> r = ohatch.apply(null, arguments).moveto(-100, -150)">
+fd 200; pen red; move 200, 0
+finished = 0
+racers = hatch 7
+racers.plan (j) ->
+  @wear random color
+  @speed 5 + random normal
+  @move j * 25 + 25, 0
+  while not @touches red
+    @fd random 5
+    await @done defer()
+  @label ++finished
+
+</pre>
+</div>
+
+<div>
+<h3>Rescue Class</h3>
+<pre data-run="Math.seedrandom(6); c = 35; speed = (->); $.fn.done = ( (cb) -> if c > 0 then --c; setTimeout(cb, 0) ); omt = $.fn.moveto; $.fn.moveto = (-> omt.apply(this, arguments); this.jump(0, 50))">
+turtle.remove()
+speed 100
+randpos = ->
+  [50 * random(normal), 50 * random(normal)]
+hatch(20, green).scale(0.75).plan ->
+  this.moveto randpos()
+  this.addClass 'kid'
+hatch(3, red).plan (num) ->
+  hero = this
+  count = 0
+  hero.moveto randpos()
+  hero.pen red
+  while true
+    await hero.done defer()
+    kid = $('.kid').nearest(hero).eq(0)
+    if kid.length is 0
+      write "hero ##{num} got #{count}"
+      return
+    else if hero.touches(kid)
+      count += 1
+      kid.label num
+      kid.remove()
+    else
+      hero.turnto(kid).fd(5)
+
+</pre>  
+
+</div>
+</div>
+
+<div class="primer">
+<p>Turtles are <em>jQuery sets</em>. Although most sets
+we have worked with contain a single turtle, a set
+can contain any number of elements.
+<code>hatch 15</code> makes a set of 15 new turtles,
+and <code>$('.turtle')</code> is the set of all turtles.
+
+<h3>JQuery Set Methods</h3>
+
+<p>Methods operating on a jQuery set <code>s</code> can:
+<ul>
+<li><em>Generate</em> a related set: <code>s.nearest [0, 0]</code>
+is the subset nearest 0, 0.
+<li><em>Manipulate</em> the elements: <code>s.fd 100</code>
+advances the elements by 100.
+<li><em>Test</em> the elements: <code>s.touches red</code>
+tests pixels under the first element.
+</ul>
+<p>Generally a manipulation method like
+<code>s.fd 100</code> will do the same thing
+to every element of the set.  However, the method
+<code>s.plan</code> applies a function that can
+run a distinct operation on each element.
+
+<h3>Giving Turtles Individualized Plans</h3>
+
+<p>When <code>s.plan (j) -> <u>action</u></code> runs,
+The <u>action</u> is done for each
+element with the following parameters:
+<p><ul>
+<li><code>this</code> (aka <code>@</code>) is
+a jQuery set with the single element.
+<li><code>j</code> is the element index, ranging from
+<code>0</code> to <code>crowd.length - 1</code>.
+</ul>
+<p>For example, <span class=h3>Scatter</span> uses <code>plan</code>
+to direct each turtle to turn and move a different random
+amount.  The function call <code>random normal</code> returns a
+<em>normally distributed</em> random number with mean 0 and
+variance 1.
+
+<p>The program <span class=h3>Turtle Race</span> is similar,
+but it also uses an <code>await</code> loop to run the seven
+turtles in a parallel race.  On each iteration, the turtles
+individually check if they have crossed the red line.
+The shared variable <code>finished</code>
+tracks the order in which the turtles finish.
+
+<h3>Using and Selecting Classes</h3>
+
+<p>The loop in <span class=h3>Rescue Class</span> finds
+the nearest kid to each hero and removes that kid if the hero
+touches it.  Otherwise the hero turns and moves towards the
+nearest kid and repeats the process.
+
+<p>At the beginning of that program, all the kids are marked
+with a class
+using <code>this.addClass('kid')</code>.  On the hero
+thread, the jQuery <em>selector</em> <code>$('.kid')</code>
+obtains the set of all current elements in the
+<code>kid</code> class that have not yet been removed.
+
+<p>jQuery methods that return sets can be chained.  For example,
+<code>$('.kid').nearest(hero).eq(0)</code> filters the set
+of kids to the subset nearest <code>hero</code>, and then
+filters that subset to its first element, if any.
+
+<p>There are a wide range of jQuery methods for finding
+and manipulating sets: much
+about jQuery has been written on the web.
+
+<p>
+</div>
+
+
+
+

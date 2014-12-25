@@ -1,0 +1,71 @@
+<div>
+<h2>24. Sorting</h2>
+
+<div>
+<h3>Quick Sort</h3>
+<pre data-run="turtle.remove()">
+list = (random 10 for [1..8])
+list.sort()
+write list
+
+</pre>
+</div>
+
+<div>
+<h3>Slow Selection Sort</h3>
+<pre data-run="turtle.remove(); Math.seedrandom(5);" data-after="$('body,div').css { fontSize: '15px', lineHeight: '17px', verticalAlign: 'top' }; $('mark').css { background: gold }">
+show = (points, highlight) -&gt;
+  render = for k, v of points
+    if Number(k) in highlight
+      "&lt;mark&gt;#{v}&lt;/mark&gt;"
+    else
+      "#{v}"
+  write "&lt;div&gt;#{render.join ','}&lt;/div&gt;"
+
+list = 'SORTME'.split ''
+show list, []
+
+for i in [0 ... list.length - 1]
+  for j in [i + 1 ... list.length]
+    if list[i] &gt; list[j]
+      [list[i], list[j]] =
+        [list[j], list[i]]
+    show list, [i, j]
+
+</pre>
+</div>
+
+<div>
+<h3>Custom Quick Sort</h3>
+<pre data-run="Math.seedrandom(17); " data-after="$('button').trigger 'click'">
+sketch = (points) -&gt;
+  cg()
+  pen null
+  for p in points
+    moveto p
+    pen red
+    dot black
+
+array = []
+
+button 'scatter', -&gt;
+  array = for [1..10]
+    random 'position'
+  sketch array
+
+button 'sort',  -&gt;
+  array.sort (a, b) -&gt;
+    a.pageX - b.pageX
+  sketch array
+
+</pre>
+
+</div>
+
+</div>
+
+<div class="primer">
+<p>About sorting.  TBD.
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+</div>

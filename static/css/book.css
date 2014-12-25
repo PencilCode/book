@@ -1,0 +1,217 @@
+@import url("reset.css");
+@import url("http://fonts.googleapis.com/css?family=Lato:300,400,400italic,700|Source+Code+Pro:500,700");
+
+body {
+  font-family: Lato;
+  font-weight: 300;
+  margin: 0 18px;
+  line-height:125%;
+}
+body.sourcebook {
+  font-weight:400;
+}
+@page {
+  size: 5.5in 8.5in;
+  margin: 0.3in 0.35in 0 0.35in;
+}
+p {
+  padding-top: 8px;
+}
+h1 {
+  margin-top: 3.5in;
+  text-align: center;
+  font-size: 200%;
+  font-weight: 300;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 125%;
+}
+h2 {
+  text-align: center;
+  font-size: 150%;
+  font-weight: 300;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  line-height: 125%;
+}
+@media screen {
+  body:not(.demo) > div + div {
+    margin-top: 12px;
+    border-top: 1px solid gray;
+  }
+  h1 {
+    margin-top: 0;
+  }
+  .notscreen {
+    display: none;
+  }
+}
+h3 {
+  font-family: 'Lato';
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding-top: 2px;
+  padding-bottom: 1px;
+  margin-top: 5px;
+  margin-bottom: 1px;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding-left: 10px;
+  line-height: 125%;
+  color: saddlebrown;
+}
+.h3 {
+  font-family: 'Lato';
+  font-size: 16px;
+  font-weight: 700;
+  color: saddlebrown;
+}
+h2:nth-child(1) {
+  page-break-before: always;
+}
+tt, s {
+  font: 12px 'Source Code Pro';
+}
+code {
+  font: 14px 'Source Code Pro';
+  padding-left: 3px;
+  padding-right: 3px;
+  color: blue;
+  font-weight: bold;
+  background: yellow;
+}
+s {
+  text-decoration: none;
+  color: red;
+}
+q {
+  font-weight: 700;
+}
+q > b {
+  color: saddlebrown;
+}
+pre {
+  font: 12px 'Source Code Pro';
+  line-height: 16px;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+pre > h3 {
+  margin: 0;
+  padding: 0;
+}
+pre .indent {
+  border-right: 1px dotted mediumseagreen;
+  margin-left: -2px;
+  margin-right: 1px;
+  padding-bottom: 1px;
+}
+.sourcebook > div > h3 {
+  margin-top: 20px;
+}
+.sourcebook pre {
+  float: right;
+  clear: right;
+  width: 250px;
+  border: 2px solid;
+  padding: 8px;
+  margin: 5px;
+  page-break-inside: avoid;
+}
+div {
+  page-break-inside: avoid;
+}
+body.demo {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.demo div._log {
+  font: 12px 'Courier';
+  margin: 0;
+  border: 0;
+}
+.reflayout {
+  margin-top: -5px;
+}
+.reflayout td:nth-of-type(2) {
+  margin-left: -10px;
+}
+.reference td {
+  font-size: 10px;
+  line-height: 100%;
+  font-weight: 400;
+}
+.reference td:nth-of-type(1) {
+  font: 10px 'Source Code Pro';
+  padding-right: 7px;
+  text-align: right;
+  font-weight: 500;
+}
+.colors td {
+  font: 7px Lato;
+  width: 70px;
+  line-height: 200%;
+  font-weight: 700;
+  text-align: center;
+}
+.colors td:nth-of-type(n+5) {
+  color:white;
+}
+body > div:nth-of-type(2) a {
+  text-decoration: none;
+}
+em {
+  font-style: italic;
+}
+sup {
+  display:inline-block;
+  position:relative;
+}
+sup > span {
+  font-size: 60%;
+  line-height: 100%;
+}
+sup > span:first-of-type {
+  position: absolute;
+  bottom: 8px;
+}
+pre.testpanel { background: gainsboro; margin: 8px; padding: 3px 8px 0 8px;
+  border-top: 5px solid silver; }
+pre.example { background: gainsboro; margin: 8px; padding: 0 8px;}
+pre.editor { background: white; margin: 8px; padding: 3px 6px 0 6px;
+  border-top: 5px solid #8ec8ff;
+  border-left: 2px solid #8ec8ff; 
+  border-bottom: 2px solid #8ec8ff; 
+  border-right: 2px solid #8ec8ff; 
+}
+pre.testpanel u, pre.editor u, pre.example u { text-decoration: none;
+  background: yellow; padding-bottom: 1px; font-weight: bold; color: blue; }
+.learning dt { margin: 0 8px; padding: 6px 0; background: gainsboro; }
+.learning dt code { font: 12px Source Code Pro;
+  background: gainsboro; color: black; padding: 6px 8px; }
+.learning dt u { padding: 0; }
+.learning tt { background: yellow; color: blue; font-weight: bold; }
+.learning pre tt { background: darkgray; }
+.learning dd { padding-left: 8px; padding-bottom: 12px; }
+.learning li { list-style: square;  margin-left: 28px; }
+.learning table.border { border-collapse: collapse; border: 1px solid; }
+.learning table.border td, .learning th {
+   border: 1px solid; padding: 0px 3px; }
+.learning table.layout { border: none; }
+.learning table.layout td { font-size: 85%; vertical-align: top; }
+a { text-decoration: none; }
+a:visited { color: blue; }
+@media print {
+  div.learning { width: 512px; }
+}
+
+/*
+@page {
+  @bottom-right {
+    content: counter(page) " of " counter(pages);
+  }
+}
+*/

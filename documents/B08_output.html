@@ -1,0 +1,132 @@
+<div>
+<h2>8. Output</h2>
+
+<div>
+<h3>Poetry and Song</h3>
+<pre data-run="turtle.remove(); play = ->">
+cry = (who, query) -&gt;
+  write "Oh #{who}, #{who}!"
+  write "#{query} #{who}?"
+cry "Romeo", "Wherefore art thou"
+cry "kitty", "What did you eat"
+play "fc/c/dcz"
+
+</pre>
+</h3>
+</div>
+
+<div>
+<h3>Imagery</h3>
+<pre data-run="turtle.remove(); $('body').css('overflow', 'hidden');">
+url = "http://upload.wikimedia.org/wikipedia" +
+      "/commons/6/61/Baby_Gopher_Tortoise.jpg"
+write """&lt;center&gt;&lt;img src="#{url}" width=100&gt;
+      &lt;/center&gt;"""
+
+</pre>
+</h3>
+</div>
+
+
+<div>
+<h3>Bold Statement</h3>
+<pre data-run="turtle.remove(); $('body').css margin: 0, overflow: 'hidden'">
+n = write "&lt;h1&gt;Notice&lt;/h1&gt;"
+write """
+&lt;p&gt;This long paragraph has
+&lt;b&gt;bold&lt;/b&gt;, &lt;i&gt;italic&lt;/i&gt;,
+and &lt;u&gt;underlined&lt;/u&gt; text.
+Horizontal rule below.&lt;/p&gt;
+"""
+write "&lt;hr&gt;"
+write """
+&lt;p&gt;&lt;a href="//pencilcode.net/"&gt;
+Link&lt;/a&gt; with an &amp;lt;a&amp;gt;.
+&lt;/p&gt;
+"""
+n.css
+  background: pink
+
+</pre>
+</div>
+
+<div>
+<h3>Graffiti</h3>
+<pre data-run="turtle.remove()">
+n = write "&lt;h1&gt;Notice&lt;/h1&gt;"
+write """
+&lt;p&gt;This long paragraph has
+&lt;b&gt;bold&lt;/b&gt;, &lt;i&gt;italic&lt;/i&gt;,
+and &lt;u&gt;underlined&lt;/u&gt; text.
+&lt;/p&gt;"""
+n.css
+  background: pink
+  display: 'inline-block'
+n.pen purple, 10
+n.bk 80
+n.rt 45
+n.fd 50
+
+</pre>
+</div>
+</div>
+
+<div class="primer">
+<p>A string written with double quotes <code>"..."</code>
+can <em>interpolate</em> values written as
+<code>#{<u>something</u>}</code>, which means the value
+of <u>something</u> is inserted into the string.
+<p>A multiline string can be written by tripling the quotes
+(either double or single) around the string, as is
+done in the last string of <span class=h3>Imagery</span>.
+
+<h3>HTML Elements</h3>
+<p>Codes like <code>&lt;b&gt;</code> are called
+<em>HTML</em> tags.
+They set off text for special formatting:
+<code>&lt;b&gt;</code> and <code>&lt;/b&gt;</code>
+mark bold text; <code>&lt;h1&gt;</code>
+and <code>&lt;/h1&gt;</code> mark a first-level
+heading; the <code>&lt;hr&gt;</code> tag is a "horizontal rule".
+<p>A matching tag pair and its contents (or singleton tag,
+for tags like <code>&lt;hr&gt;</code> or
+<code>&lt;img&gt;</code> that are not paired)
+make up an HTML <em>element</em>.
+
+<h3>Attributes</h3>
+<p>HTML Elements can have attributes with special meanings such
+as the <code>href</code> attribute on the <code>&lt;a&gt;</code>
+element, which sets the URL for a hyperlink.
+<p>The other attributes seen on this page are the <code>src</code>
+and <code>width</code> attributes on the <code>&lt;img&gt;</code>
+element, which specify the location from which to load the
+image data, and the scaling width to use.
+
+<h3>jQuery Objects</h3>
+<p>Programs can use <em>jQuery objects</em> to alter HTML
+elements on the screen.
+<p>The code <code>n = write "&lt;h1&gt;Notice&lt;/h1&gt;"</code>
+returns a jQuery object for the <code>&lt;h1&gt;</code> element,
+and stores it in the variable <code>n</code>.  Then
+the jQuery function <code>n.css</code> is used to alter its CSS.
+<p>In Pencil Code, all the turtle methods such as <code>fd</code>
+and <code>pen</code> are available as jQuery methods.  Any
+element can be moved like a turtle.
+
+<h3>CSS Properties</h3>
+<p>CSS properties can alter many of the details of HTML formatting
+such as such as an element's <code>background</code> (set here to
+<code>pink</code>).  The <code>css</code> function can set more
+than one property at once, and the property list under
+<code>n.css</code> should be indented.
+
+<h3>Exploring More</h3>
+<p>HTML is a rich subject. There are more than 100 types
+of HTML elements, more than 100 HTML attributes, more than
+100 jQuery methods, and more than 100 CSS properties.
+The best way to explore all these options is to search for
+and consult the many resources on the Internet about these
+technologies.
+<p>And experiment.
+
+</div>

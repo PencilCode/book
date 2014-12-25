@@ -1,0 +1,147 @@
+
+<div>
+<div>
+<h2>17. Text</h2>
+</div>
+
+<div>
+<pre>
+text = """If you can look into the seeds of time
+          And say which grain will grow and which will not,
+          Speak, then, to me."""
+
+</pre>
+</div>
+
+<div>
+<h3>Substr</h3>
+<pre data-run="turtle.remove(); text='If you can look into the seeds of time\nAnd say which grain will grow and which will not,\nSpeak, then, to me.'">
+see text.indexOf 'which'
+see text.substr 47, 7
+
+</pre>
+</div>
+
+<div>
+<h3>Unicode</h3>
+<pre data-run="turtle.remove(); $('body').css('overflow', 'hidden'); text='If you can look into the seeds of time\nAnd say which grain will grow and which will not,\nSpeak, then, to me.'">
+see 'charCode', text.charCodeAt(0)
+see 'string', String.fromCharCode(73)
+for x in [88, 188, 9988]
+  see x, String.fromCharCode(x)
+
+</pre>
+</div>
+
+<div>
+<h3>Match</h3>
+<pre data-run="turtle.remove(); $('body').css('overflow', 'hidden'); text='If you can look into the seeds of time\nAnd say which grain will grow and which will not,\nSpeak, then, to me.'">
+see text.match /w....g.../
+see text.match /[a-z][a-z]/
+see text.match /\s[a-z][a-z]\s/
+see text.match /\b[a-z][a-z]\b/
+see text.match /\b[a-z][a-z]\b/gi
+see text.match /\b[gn][a-z]*\b/g
+see text.match /z/
+
+</pre>
+</div>
+
+<div>
+<h3>Split</h3>
+<pre data-run="turtle.remove(); text='If you can look into the seeds of time\nAnd say which grain will grow and which will not,\nSpeak, then, to me.'">
+lines = text.split /\n/
+see lines[2]
+words = text.split /\s+/
+see words[0..2]
+
+</pre>
+</div>
+
+<div>
+<h3>Groups</h3>
+<pre data-run="turtle.remove(); text='If you can look into the seeds of time\nAnd say which grain will grow and which will not,\nSpeak, then, to me.'">
+pattern = /\b([a-z]+) of ([a-z]+)\b/
+matched = pattern.exec text
+for g in [0..2]
+  see "group #{g}: #{matched[g]}"
+
+</pre>
+</div>
+
+<div>
+<h3>Replace</h3>
+<pre data-run="turtle.remove(); text='If you can look into the seeds of time\nAnd say which grain will grow and which will not,\nSpeak, then, to me.'" data-after="$('mark').css {background: gold}">
+r = text.replace /[A-Z][a-z]*/g,
+    "&lt;mark&gt;$&amp;&lt;/mark&gt;"
+r = r.replace /\n/g,
+    "&lt;br&gt;"
+r = r.replace /\bw[a-z]*\b/g,
+    (x) -&gt; x.toUpperCase()
+write r
+
+</pre>
+</div>
+
+</div>
+
+
+<div class="primer">
+<p><em>String algorithms</em> to locate patterns
+in text are a fundamental tool for understanding
+written language.
+
+<h3>Characters</h3>
+<p>Strings are arrays of <em>characters</em>.  The
+<em>Unicode character set</em> supports textual
+communication around the world, so it includes
+characters for every international alphabet, every
+Asian pictographic word, and every common
+mathematical symbol.
+<p>Unicode assigns a number to every character.
+<code>String.fromCharCode</code> gets the character
+for the number, and <code>text.charCodeAt</code> gets
+the number for a character.
+Numbers up to 127 are <em>ASCII</em>
+codes that cover American English:
+65 is uppercase A, 122 is lowercase z, 48 is the
+0 digit, 32 is the space, and 36 is the $ dollar symbol.
+
+<h3>Locating Substrings in Text</h3>
+<p>The simplest way to match text is to find an exact
+substring: <code>text.indexOf</code> returns the location
+of the first occurrence of the given substring in
+<code>text</code>, or <code>-1</code> if none was found.
+Conversely, if you have an index of interest,
+<code>text.substr x, len</code> returns the <code>len</code>
+characters starting at index <code>x</code>.
+
+<h3>Matching Patterns</h3>
+<p><em>Regular expressions</em>, are flexible and precise
+text patterns written between pairs of slash
+<code>/.../</code> delimiters.  Regular expression
+syntax is a whole language that is the topic of several
+good books and websites.  Here are a few basics:
+<p><ul>
+<li><code>(abc)*</code> matches zero or more repetitions of abc.
+<li><code>[abc]</code> matches either an a or b or c.
+<li><code>a..c</code> matches a followed by two characters then c.
+<li><code>ab+c</code> matches a, then one or more b's, then c.
+<li><code>[a-z]{3}</code> matches three lowercase letters.
+<li><code>\d*</code> matches zero or more digits.
+<li><code>x\s+</code> matches x followed by one or more spaces.
+<li><code>z\b</code> matches a z followed by a word boundary.
+</ul>
+<p>The <code>text.match</code> method returns matching substrings.
+Normally, the first match is found,
+but if the letter <code>g</code>
+(for "global") follows the pattern then all matching
+substrings are returned.  There are other useful suffixes:
+<code>i</code> makes the match case-insensitive.
+<p>The <code>pattern.exec</code> method extracts of
+submatches within parentheses in the pattern, and
+the <code>text.replace</code> method replaces
+matches with a new string.
+
+</div>
+

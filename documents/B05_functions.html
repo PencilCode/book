@@ -1,0 +1,126 @@
+<div>
+<h2>5. Functions</h2>
+
+<div>
+<h3>Scoot Function</h3>
+<pre data-run="jump 10, 0">
+pen purple
+scoot = (x) -&gt; fd 10 * x
+rt 90
+scoot 7
+
+</pre>
+</div>
+
+<div>
+<h3>Spike Function</h3>
+<pre data-run="jump 50, 0">
+spike = (x) -&gt;
+  fd x
+  label x
+  bk x
+
+pen crimson
+for n in [1..6]
+  spike n * 10
+  rt 60
+
+</pre>
+</div>
+
+<div>
+<h3>Square Function</h3>
+<pre data-run="jump 10, -40">
+square = (size) -&gt;
+  for [1..4]
+    fd size
+    rt 90
+
+pen red
+square 80
+
+jump 15, 15
+pen firebrick
+square 50
+
+</pre>
+</div>
+
+<div>
+<h3>Tee Function</h3>
+<pre data-run="jump 20, -30">
+tee = ->
+  fd 50
+  rt 90
+  bk 25
+  fd 50
+
+pen green
+tee()
+pen gold
+tee()
+pen black
+tee()
+
+</pre>
+</div>
+
+</div>
+
+<div class="primer">
+<p>The most important idea in this book:
+<p>
+<center><em>Programs define their own functions.</em></center>
+
+<p>A function is a miniature program.  In CoffeeScript, a function
+is written with an arrow <code>-></code> typed as
+two symbols next to each other (the minus and
+the greater-than) like this:
+<p><code>(<u>input</u>) -> <u>something to do</u></code>
+
+<h3>Writing and Naming Functions</h3>
+
+<p>A function that advances the turtle by ten times a distance is
+<p><code>(x) -> fd 10 * x</code>
+<p>Name a function like any variable,
+using <code>=</code>.
+<p><code>scoot = (x) -> fd 10 * x</code>
+<p>After the definition, we can write
+<code>scoot 7</code> or <code>scoot 5 + 2</code>.
+In other words, <code>scoot</code> can be used just
+like predefined functions like <code>fd</code> or <code>rt</code>.
+
+<h3>Parameters</h3>
+<p>The variable <code>x</code> in parentheses in the function
+definition is called a <em>parameter</em>.  Parameters may use
+any name.  When the function is run, the
+parameter takes on the value passed to the function.
+<p>When <code>spike n * 10</code> is called, the code within the
+function binds parameter name <code>x</code> to the current
+value of <code>n * 10</code>, which is 10 during the
+first iteration of the loop.
+<p>Each time a function is called, its parameters can have
+different values.  The last time <code>spike</code> is called,
+<code>n * 10</code> has advanced to 60, so the value of
+<code>x</code> during the last function call is 60.
+
+<h3>Indenting Functions</h3>
+<p>The level of indenting is important
+for determining the scope of a line.  If a line is
+indented under an arrow, that line is inside the function.
+<p>If the function itself contains loops, those
+should be indented further. There is no limit to the depth of
+nested indenting, but indenting must be done neatly.  Each level
+of indenting indicates a particular function, loop, or
+nested scope.
+
+<h3>Functions with No Parameters</h3>
+<p>Functions like <code>tee</code> that have no parameters
+are written specially:
+<p>
+<ul>
+<li>The definition <code>tee = -> ...</code> omits the parentheses.
+<li>Calling <code>tee()</code> requires empty parentheses.
+</ul>
+
+</div>

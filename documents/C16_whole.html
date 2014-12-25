@@ -1,0 +1,52 @@
+<div class="learning">
+<h2>16. The Whole Hangman Program</h2>
+
+<p>Here is the whole program from beginning to end:
+
+<pre class="editor" data-format="1" style="background:white">
+speed 10
+pen blue
+fd 150
+rt 90
+fd 50
+rt 90
+fd 20
+await done defer()
+write 'time to play hangman'
+await $.get 'http://pencilcode.net/data/animals', defer animals
+secret = random animals.split '\n'
+show = 'aeiou'
+turns = 5
+
+while turns &gt; 0
+  blanks = 0
+  for letter in secret
+    if letter in show
+      append letter + ' '
+    else
+      append '_ '
+      blanks += 1
+  
+  if blanks is 0
+    write 'You win!'
+    break
+  
+  write 'guess a letter'
+  await read defer guess
+  show += guess
+  
+  if guess not in secret
+    turns -= 1
+    write 'Nope.'
+    write turns + ' more turns'
+    if turns is 4 then lt 90; rt 540, 10; lt 90
+    if turns is 3 then fd 20; lt 45; bk 30; fd 30
+    if turns is 2 then rt 90; bk 30; fd 30; lt 45; fd 30
+    if turns is 1 then rt 45; fd 30
+    if turns is 0
+      bk 30; lt 90; fd 30
+      await done defer()
+      write 'The answer is ' + secret
+
+</pre>
+</div>

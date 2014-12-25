@@ -1,0 +1,140 @@
+<div>
+<h2>15. Randomness</h2>
+
+<div>
+<h3>Two Dice</h3>
+<pre data-run="ht()">
+onedice = -&gt;
+  random [1..6]
+twodice = -&gt;
+  onedice() + onedice()
+for [1..5]
+  write twodice()
+
+</pre>
+</div>
+
+<div>
+<h3>Random Walk</h3>
+<pre data-run="move 30, 0; rt 90">
+for [1..20]
+  fd 10
+  rt random(181) - 90
+  dot gray, 5
+
+</pre>
+</div>
+
+<div>
+<h3>Cubism</h3>
+<pre data-run="move 40, 0">
+for [1..14]
+  pen random [red,black,blue]
+  fd random 70
+  rt 90
+
+</pre>
+</div>
+
+<div>
+<h3>Confetti</h3>
+<pre data-run="move 40, 0">
+for [1..300]
+  moveto random position
+  dot random color
+
+</pre>
+</div>
+
+<div>
+<h3>Decimal Random</h3>
+<pre data-run="turtle.remove()">
+for [1..2]
+  write Math.random()
+
+</pre>
+
+<div>
+<h3>Five Flips</h3>
+<pre data-run="turtle.remove(); write '<br><br>'">
+c = [0, 0, 0, 0, 0, 0]
+for [1..500]
+  heads = 0
+  for [1..5]
+    heads += random 2
+  c[heads] += 1
+for h of c
+  b = write h + ":" + c[h]
+  b.css
+    background: skyblue
+    width: c[h]
+
+</pre>
+</div>
+
+</div>
+
+</div>
+
+<div class="primer">
+<p>Most functions and programs are designed to be <em>deterministic</em>,
+which means they run exactly the same way given the same input.
+<p>The <code>random</code> function is different.  Each time it runs,
+it produces random results that are unpredictable.  Here are several ways
+of using <code>random</code>:
+<ul>
+<li><code>random [1..6]</code> chooses a random member of a list.
+<li><code>random 70</code> chooses a random integer from 0 to 69.
+<li><code>random position</code> picks a random screen position.
+<li><code>random color</code> picks a random color.
+<li><code>random normal</code> picks a normally distributed number.
+</ul>
+<p>All of these are built using the lower-level function:
+<ul>
+<li><code>Math.random()</code> returns a random number between
+0.0 and 1.0.
+</ul>
+<h3>Expect The Unexpected</h3>
+<p>Randomness is a subtle concept.  Think about flipping a
+coin five times:
+<center>
+<code>flips = random ['heads', 'tails'] for [1..5]</code>
+</center>
+The <code>random</code> function is careful to pick between
+choices with equal probability, and our coin flip will be perfectly fair.
+So we might be surprised to run this program and get
+<center>
+<code>['heads', 'heads', 'heads', 'heads', 'heads']</code>
+</center>
+<p>However, we should not be too surprised: there are
+32 possible sequences of heads and tails, and
+each of those sequences is just as likely as any others.
+An output of five heads is just as "random" as
+any other sequence of heads and tails.
+<p>If we repeated five coin flips five hundred
+times, we expect to see "all heads" about
+500/32=15.625 times.  <b class=h3>Five Flips</b>
+illustrates this effect.
+<p>Yet the principle of unpredictability holds even when
+repeating a random process 500 times: we should not
+be too surprised if we obtain "all heads" much more or less
+often than 15 or 16 times.  With <code>random</code>,
+rare coincidences <u>will</u> happen if you try often enough.
+<h3>Average is Normal</h3>
+<p>Another remarkable fact about randomness is the
+<em>Central Limit Theorem</em>: if you average enough
+random events - regardless of bias - the distribution
+of the average will be guaranteed to form a precise bell
+curve, called a <em>Gaussian</em>, or <em>Normal</em> distribution.
+<code>random normal</code> directly
+generates random numbers according to this
+bell curve: it produces random numbers from
+the normal distribution with a
+mean of zero and a variance of one.
+<p>The reliable unpredictability of <code>random</code>
+makes it indispensable for games, simulations, and
+cryptography.
+</div>
+
+
+

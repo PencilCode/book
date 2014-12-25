@@ -1,0 +1,137 @@
+<div>
+<h2>7. Time</h2>
+
+<div>
+<h3>Pause</h3>
+<pre data-run="speed Infinity; bk 40; window.pause = ( -> ); window.speed = ->">
+speed 100
+pen red
+for x in [1..20]
+  fd 80
+  rt 100
+  if x is 10
+    pause 2
+
+</pre>
+</div>
+
+<div>
+<h3>Second Hand</h3>
+<pre data-run="speed Infinity; jump 10, 50; window.speed = (->); window.tick = (fn) -> fn() for x in [1..10]">
+speed Infinity
+advance = -&gt;
+  pen lightgray
+  bk 100
+  rt 5
+  pen red
+  fd 100
+tick advance
+
+</pre>
+</div>
+
+<div>
+<h3>Countdown</h3>
+<pre data-run="turtle.remove(); window.tick = (fn) -> fn() for x in [1..6] when fn;">
+seconds = 5
+tick -&gt;
+  if seconds is 0
+    write "Time's up!"
+    tick null
+  else
+    write seconds
+    seconds = seconds - 1
+
+</pre>
+</div>
+
+<div>
+<h3>Click Draw</h3>
+<pre data-run="speed Infinity; pen green; rt 135; fd 45; lt 30; fd 50; lt 60; fd 40; lt 30; fd 60; lt 125; fd 100; turnto 0;">
+speed Infinity
+pen green
+
+tick -&gt;
+  moveto lastclick
+
+</pre>
+</div>
+
+<div>
+<h3>Move Draw</h3>
+<pre data-run="speed Infinity; bk 15; pen orange; turnto 48; fd 8; turnto 50; fd 1; turnto 52; fd 4; turnto 57; fd 3; turnto 78; fd 4; turnto 99; fd 2; turnto 113; fd 2; turnto 118; fd 2; turnto 121; fd 2; turnto 124; fd 1; turnto 126; fd 2; turnto 129; fd 5; turnto 130; fd 7; turnto 131; fd 2; turnto 129; fd 4; turnto 124; fd 4; turnto 120; fd 2; turnto 114; fd 2; turnto 101; fd 1; turnto 98; fd 2; turnto 93; fd 2; turnto 86; fd 2; turnto 81; fd 1; turnto 76; fd 1; turnto 70; fd 1; turnto 63; fd 1; turnto 55; fd 1; turnto 50; fd 1; turnto 39; fd 1; turnto 28; fd 3; turnto 26; fd 4; turnto 24; fd 5; turnto 22; fd 5; turnto 21; fd 5; turnto 22; fd 3; turnto 24; fd 1; turnto 25; fd 1; turnto 26; fd 1; turnto 28; fd 1; turnto 30; fd 1; turnto 33; fd 1; turnto 37; fd 1; turnto 42; fd 1; turnto 48; fd 1; turnto 55; fd 1; turnto 58; fd 1; turnto 61; fd 1; turnto 63; fd 1; turnto 67; fd 1; turnto 70; fd 1; turnto 71; fd 1; turnto 72; fd 3; turnto 74; fd 5; turnto 75; fd 5; tick = ->">
+speed Infinity
+pen orange
+
+tick 100, -&gt;
+  turnto lastmousemove
+  fd 1
+
+</pre>
+</div>
+
+
+</div>
+
+<div class="primer">
+<p>There are two techniques for organizing time in a program:
+<ol>
+<li><em>Queues</em>: process lists of events over time in sequence.
+<li><em>Frames</em>: process snapshots of the world at regular
+time intervals.
+</ol>
+
+<h3>How <code>speed</code> Works with Queues</h3>
+
+<p>In Pencil Code, each turtle has its own <em>animation queue</em>
+that is used if you set <code>speed</code> to any number less than
+Infinity.  (The default speed is one.)
+
+<p>Each movement command like <code>fd 100</code> adds
+the motion to the turtle's animation queue.  When the program is
+finished running, the turtle has the whole plan, and it runs
+through its animation queue after your program is done.
+
+<p>The animation queue works well for timed motions that your program
+can plan ahead of time.  But if you are writing a game or
+simulation that needs to respond to events in real time, then
+you may find it more sensible to to draw frames.
+
+<h3>How <code>tick</code> Works with Frames</h3>
+
+<p>The <code>tick</code> command is used for frames: it calls the
+passed function at a regular rate.  The optional first
+argument is the frame rate (the default rate is one frame per
+second).
+
+<p>The <span class=h3>Countdown</span> example writes a
+number on each tick callback.  It also shows how to clear
+the callback once you are done: call <code>tick null</code>.
+
+<p>The <span class=h3>Move Draw</span> example is a very simple
+interactive program that uses <code>tick</code>.  100 times per
+second, it runs a function that turns the turtle toward the position
+on the screen where the mouse last moved, then advances the turtle
+by one pixel.  Because each frame should be drawn instantaneously,
+it sets <code>speed Infinity</code>.
+
+<h3>New Functions and Variables</h3>
+
+<p>Several new built-in names are used in these examples.
+<p>
+<ul>
+<li><code>pause 2</code> adds a 2-second pause to the animation queue.
+<li><code>tick 100, fn</code> calls fn 100 times per second.
+<li><code>write "Time's up"</code> writes a message on the screen.
+<li><code>moveto lastclick</code> moves the turtle to the position
+of the last click.
+<li><code>turnto lastmousemove</code> turns the turtle toward the last mouse position.
+</ul>
+
+<p>The <code>moveto</code> can be used with any Cartesian coordinate
+or any object that has a position - it happens to be used here
+with the special variable <code>lastclick</code>.  Similarly,
+<code>turnto</code> can be used with any absolute direction or
+coordinate.  The special variable <code>lastmousemove</code>
+happens to keep the most recent mouse position.
+</div>

@@ -1,0 +1,43 @@
+<div class="learning">
+<h2>15. Loading a List from the Internet</h2>
+
+<p>There is a longer list of animals on the internet at the address
+<a href="http://pencilcode.net/data/animals">http://pencilcode.net/data/animals</a>.
+
+<p>We can load this data using a jQuery function
+"$.get".  (Read more about jQuery at
+<a href="http://learn.jquery.com">learn.jquery.com</a>.)
+
+<p>The code looks like this:
+
+<pre class="editor" data-format="1">
+...
+write 'time to play hangman'
+<u>await $.get 'http://pencilcode.net/data/animals', defer animals</u>
+<u>secret = random animals.split '\n'                             </u>
+...
+
+</pre>
+
+<p>What this means is:
+
+<dl>
+<dt><code><tt>await</tt> $.get 'http://pencilcode.net/data/animals', defer animals</u></code>
+<dd>Pause the program until the $.get is done.
+<dt><code>await <tt>$.get 'http://pencilcode.net/data/animals'</tt>, defer animals</u></code>
+<dd>Open up the address http://pencilcode.net/data/animals
+<dt><code>await $.get 'http://pencilcode.net/data/animals', <tt>defer animals</tt></u></code>
+<dd>Tell $.get to resume the program after putting the answer in "animals."
+<dt><code>secret = random animals.split <tt>'\n'</tt></u></code>
+<dd>The special string '\n' is the newline character between lines in a file.
+Notice that the "\" is a backslash, not the ordinary slash.
+<dt><code>secret = random <tt>animals.split '\n'</tt></u></code>
+<dd>Split the animals string into an array, with one entry per line.
+<dt><code>secret = <tt>random</tt> animals.split '\n'</u></code>
+<dd>Choose one item from the array randomly.
+<dt><code><tt>secret = </tt>random animals.split '\n'</u></code>
+<dd>Call this random word "secret".
+<dd>
+</dl>
+
+</div>

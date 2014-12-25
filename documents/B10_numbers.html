@@ -1,0 +1,151 @@
+<div>
+<h2>10. Numbers</h2>
+
+<div>
+<h3>Parsing</h3>
+<pre data-run="ht()">
+write '5' + '3'
+write Number('5') + Number('3')
+
+</div>
+
+<div>
+<h3>Ways to Count</h3>
+<pre data-run="ht()">
+counter = 0
+write ++counter + 'a'
+write (counter += 1) + 'b'
+write (counter = counter + 1) + 'c'
+
+</pre>
+</div>
+
+
+<div>
+<h3>Circle Measurements</h3>
+<pre data-run="ht(); $('body').css {overflow: 'hidden'}">
+area = (radius) -&gt;
+  Math.PI * radius * radius
+
+circumference = (radius) -&gt;
+  2 * Math.PI * radius
+
+for r in [1, 5, 10]
+  write 'radius ' + r
+  write 'a ' + area r
+  write 'c ' + circumference r
+
+
+</pre>
+</div>
+
+<div>
+<h3>Hypotenuse</h3>
+<pre data-run="ht()">
+hypotenuse = (a, b) -&gt;
+  Math.sqrt(a * a + b * b)
+
+write hypotenuse 3, 4
+write hypotenuse 5, 12
+write hypotenuse 10, 10
+write Math.floor(hypotenuse(10, 10))
+
+</pre>
+</div>
+
+
+<div>
+<h3>Euclid's Method</h3>
+<pre data-run="ht()">
+gcf = (a, b) -&gt;
+  if a &gt; b
+    return gcf b, a
+  remainder = b % a
+  if remainder is 0
+    return a
+  gcf remainder, a
+
+for x in [80..88]
+  write "gcf(120,#{x})=" +
+      gcf(120, x)
+
+
+</pre>
+</div>
+</div>
+
+
+<div class="primer">
+<p>In CoffeeScript, numbers are unquoted.
+The language treats numbers and strings differently:
+<code>5 + 3</code> is 8, while <code>'5' + '3'</code> is "53".
+
+<h3>Numerical Conversion</h3>
+
+<p>Strings can be parsed to numbers using the <code>Number</code>
+function; the <code>String</code> function does the opposite.
+
+<p>CoffeeScript allows numbers and strings to be mixed, but you
+should be careful when doing it.
+Adding a number to a string will convert the
+number to a string and attach it.  Multiplying a number by
+a string will convert the string to a number and do
+the numerical product.
+
+<h3>Three Ways to Change a Variable</h3>
+
+<p>There are three types of statements that change the value of
+a variable.
+<p><ul>
+<li><code>++counter</code> the increment operator.
+Putting <code>++</code> before the variable name increments
+the value before it is used, and putting <code>++</code> after
+the variable increments it after it is used.  The <code>--</code>
+decrement is similar.
+<li><code>counter += 1</code> the sum assignment operator, which
+changes a variable by adding a value.  There are also <code>-=</code>,
+<code>*=</code>, and <code>/=</code> operators.
+<li><code>counter = counter + 1</code> the ordinary assignment operator.
+Notice that the right hand side is computed
+<em>before</em> the left hand side is changed.
+</ul>
+
+<h3>Floating Point Limits</h3>
+
+<p>CoffeeScript uses <em>IEEE 754</em>
+"double-precision" floating-point numbers,
+which means numbers are stored using 64 bits.
+Scientific notation is written with an <code>e+</code>
+or <code>e-</code> followed by a power of 10:
+<code>1e+6</code> is one million
+and <code>1e-9</code> is one billionth.
+
+<p>There are 15 digits of precision, and
+every integer up to 9,007,199,254,740,992
+can be written exactly.
+There are also special <code>Infinity</code>
+and <code>NaN</code> ("Not a Number") values.
+However, not every
+real number can be represented exactly:
+the next number after zero is
+<code>5e-324</code> and the largest number
+is <code>1.79e+308</code>.
+
+<p>The limits are expansive, so
+for most practical purposes, you can treat
+CoffeeScript numbers as if they were real numbers.
+
+<h3>The Modulo Operator</h3>
+
+<p>The <em>modulo</em> operator <code>x % y</code> computes
+the remainder of <code>x</code> when divided by <code>y</code>.
+In other words, it removes the largest integer multiple of
+<code>y</code> from <code>x</code> and returns the remainder.
+
+<p>The modulo operator is useful for divisibility tests:
+<code>x % y</code> is zero if <code>x</code> is divisible
+by <code>y</code>.  Euclid's famous algorithm uses
+the modulo operator to efficiently compute greatest
+common factors.
+
+</div>

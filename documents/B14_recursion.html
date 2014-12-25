@@ -1,0 +1,149 @@
+<div>
+<h2>14. Recursion</h2>
+
+<div>
+<h3>Recursive Spiral</h3>
+<pre data-run="speed Infinity; bk 50">
+spiral = (x) -&gt;
+  if x &gt; 0
+    fd x * 10
+    rt 90
+    spiral x - 1
+    lt 90
+    bk x * 10
+pen red
+spiral 10
+
+</pre>
+</div>
+
+<div>
+<h3>Fractal Fern</h3>
+<pre data-run="move 55,-105; scale 0.95; speed = ->">
+speed 1000
+fern = (x) -&gt;
+  if x &gt; 1
+    fd x
+    rt 95
+    fern x * .4
+    lt 190
+    fern x * .4
+    rt 100
+    fern x * .8
+    lt 5
+    bk x
+pen green
+fern 50
+
+</pre>
+</div>
+
+<div>
+<h3>Koch Snowflake</h3>
+<pre data-run="move 15,-70; speed = ->">
+speed Infinity
+flake = (x) -&gt;
+  if x &lt; 3 then fd x
+  else
+    flake x / 3
+    lt 60
+    flake x / 3
+    rt 120
+    flake x / 3
+    lt 60
+    flake x / 3
+pen navy
+for [1..3]
+  flake 150
+  rt 120
+fill azure
+
+</pre>
+</div>
+</div>
+
+<div class="primer">
+<p><em>Recursive</em> functions refer to themselves,
+and they can achieve powerful effects.  Recursion is
+at the core of fractals, language, and reasoning.
+
+<h3>Recursion as a Stack</h3>
+<p>Operationally, recursion works by stepping
+through a stack of work.  Consider the sequence
+as <span class=h3>Spiral</span>
+draws a shape and retraces it back.
+<pre style="">
+<div style="border: 1px solid red; margin-top: 5px; padding-left: 5px;"
+>spiral 10 <span style="font: 300 14px Lato;">sets x to 10</span>
+  rt 90; fd x * 10; spiral x - 1 &dArr;                lt 90; bk x * 10 &uArr;</div
+><div style="border: 1px solid red; margin-top: 5px; padding-left: 5px;"
+>  spiral 9 <span style="font: 300 14px Lato;">sets x to 9</span>
+    rt 90; fd x * 10; spiral x - 1 &dArr;            lt 90; bk x * 10 &uArr;</div
+><div style="border: 1px solid red; margin-top: 5px; padding-left: 5px;"
+>    spiral 8 <span style="font: 300 14px Lato;">sets x to 8</span>
+      rt 90; fd x * 10; spiral x - 1 &dArr;        lt 90; bk x * 10 &uArr;</div
+><div style="border: 1px solid red; margin-top: 5px; padding 3px;"
+>                    <span style="font: 300 14px Lato;">... etc, until the base case</span> spiral 0 &uArr;</div
+></pre>
+<p>Each time <code>spiral</code> is called, it puts the previous
+call on hold and does the smaller spiral.  After the smaller
+spiral is done, it returns to finish work on the bigger one.
+<code>spiral 0</code> does nothing:
+that is called the <em>base case</em>.
+<p>The <code>x</code> at different levels
+are <em>local</em> variables that do not interfere with
+each other.  Each red box is a <em>stack frame</em> with
+its own "copy" of <code>x</code>.
+
+<h3>Recursion as a Reduction</h3>
+
+<p>Conceptually, recursion reduces a problem
+to smaller cases.  Consider how <span class=h3>Fern</span>
+draws a large fern by assuming it can draw smaller ferns:
+
+<center><pre data-run="speed Infinity" data-nocode="1"
+data-width=500 data-height=260>
+move 60, -5
+label '&rArr;'
+jump -110, -110
+fern = (x, depth, boxd) ->
+  if x > 1
+    fd x
+    rt 95
+    fern x * .4, depth + 1, boxd
+    lt 190
+    fern x * .4, depth + 1, boxd
+    rt 100
+    fern x * .8, depth + 1, boxd
+    lt 5
+    bk x
+  if depth is boxd
+    pen red
+    rt 90
+    fd 1.7 * x
+    lt 90
+    fd 4.5 * x
+    lt 90
+    fd 3.5 * x
+    lt 90
+    fd 4.5 * x
+    lt 90
+    fd 1.8 * x
+    lt 90
+    pen green
+pen green
+fern 50, 0, 1
+hatch().moveto(turtle)
+jump 220, 0
+fern 50, 0, 0
+</pre></center>
+<p>All <code>fern</code> does is draw a stem with
+three smaller ferns at the end.  The main caveat
+is that the reduction has a limit: it ends when x &le; 1.
+<p>Both <span class=h3>Spiral</span> and
+<span class=h3>Fern</span> return the turtle to exactly
+the same position and direction at the end of
+a function call.  Maintaining an <em>invariant</em>
+like this can make recursion much easier to understand.
+</div>
+
