@@ -45,11 +45,11 @@ $(function() {
     doc.open();
     doc.write(
         '<!doctype html>\n' +
-        '<link rel="stylesheet" href="demo.css">' +
+        '<link rel="stylesheet" href="/css/demo.css">' +
         '<body class="demo">' +
-        '<script src="/turtlebits.js" panel="false" subpixel="5"><' +
+        '<script src="//pencilcode.net/turtlebits.js" panel="false" subpixel="5"><' +
         '/script>' +
-        '<script src="/lib/seedrandom.js"><' + '/script>' +
+        '<script src="//pencilcode.net/lib/seedrandom.js"><' + '/script>' +
         '<script type="text/coffeescript">\n' +
         'window.speed Infinity\n' +
         'Math.seedrandom("turtle")\n' +

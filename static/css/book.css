@@ -6,6 +6,7 @@ body {
   font-weight: 300;
   margin: 0 18px;
   line-height:125%;
+  font-size: 12.5px;
 }
 body.sourcebook {
   font-weight:400;
@@ -18,7 +19,7 @@ p {
   padding-top: 8px;
 }
 h1 {
-  margin-top: 3.5in;
+  margin-top: 2.5in;
   text-align: center;
   font-size: 200%;
   font-weight: 300;
@@ -39,21 +40,18 @@ h2 {
     margin-top: 12px;
     border-top: 1px solid gray;
   }
-  h1 {
-    margin-top: 0;
-  }
   .notscreen {
     display: none;
   }
 }
 h3 {
   font-family: 'Lato';
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 1px;
   padding-top: 2px;
   padding-bottom: 1px;
-  margin-top: 5px;
+  margin-top: 3px;
   margin-bottom: 1px;
   margin-left: -10px;
   margin-right: -10px;
@@ -135,17 +133,20 @@ body.demo {
 }
 .reflayout {
   margin-top: -5px;
+  margin-left: -5px;
+  margin-right: -5px;
 }
 .reflayout td:nth-of-type(2) {
-  margin-left: -10px;
+  margin-left: -15px;
+  margin-right: -10px;
 }
 .reference td {
-  font-size: 10px;
+  font-size: 9px;
   line-height: 100%;
   font-weight: 400;
 }
 .reference td:nth-of-type(1) {
-  font: 10px 'Source Code Pro';
+  font: 9px 'Source Code Pro';
   padding-right: 7px;
   text-align: right;
   font-weight: 500;
@@ -153,7 +154,7 @@ body.demo {
 .colors td {
   font: 7px Lato;
   width: 70px;
-  line-height: 200%;
+  line-height: 180%;
   font-weight: 700;
   text-align: center;
 }
@@ -183,9 +184,9 @@ pre.testpanel { background: gainsboro; margin: 8px; padding: 3px 8px 0 8px;
 pre.example { background: gainsboro; margin: 8px; padding: 0 8px;}
 pre.editor { background: white; margin: 8px; padding: 3px 6px 0 6px;
   border-top: 5px solid #8ec8ff;
-  border-left: 2px solid #8ec8ff; 
-  border-bottom: 2px solid #8ec8ff; 
-  border-right: 2px solid #8ec8ff; 
+  border-left: 2px solid #8ec8ff;
+  border-bottom: 2px solid #8ec8ff;
+  border-right: 2px solid #8ec8ff;
 }
 pre.testpanel u, pre.editor u, pre.example u { text-decoration: none;
   background: yellow; padding-bottom: 1px; font-weight: bold; color: blue; }

@@ -1,0 +1,21 @@
+@import url("http://fonts.googleapis.com/css?family=Lato:400|Source+Code+Pro:500");
+
+body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  font-size: 16px;
+}
+body > div, mark.turtle, label {
+  font-family: Lato;
+  font-weight: 400;
+  line-height: 20px;
+  vertical-align: top;
+}
+body samp._log {
+  font: 12px 'Source Code Pro';
+  line-height: 16px;
+  font-weight: 500;
+  margin: 0;
+  border: 0;
+}

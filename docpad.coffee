@@ -40,8 +40,8 @@ docpadConfig = {
 
       # The website's scripts
       scripts: [
-        '/lib/jquery.js'
-        '/lib/jquery-turtle.js'
+        '//pencilcode.net/lib/jquery.js'
+        '//pencilcode.net/lib/jquery-turtle.js'
         '/js/demo.js'
       ]
 

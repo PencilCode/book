@@ -1,3 +1,6 @@
+---
+layout: book
+---
 <div>
 <center>
 <h2>Reference</h2>
@@ -21,23 +24,21 @@
 <tr><td>st()</td><td>show the turtle</td></tr>
 <tr><td>scale 8</td><td>do everything 8x bigger</td>
 <tr><td>wear yellow</td><td>wear a yellow shell</td></tr>
+<tr><td>wear '/img/hat'</td><td>wear a hat image</td></tr>
 <tr><td>fadeOut()</td><td>fade and hide the turtle</td></tr>
 <tr><td>remove()</td><td>totally remove the turtle</td></tr>
 
 <tr><th colspan="2"><h3>Output</h3></th></tr>
 <tr><td>write 'hi'</td><td>adds HTML to the page</td></tr>
-<tr><td>p = write 'fast'</td><td>remembers written HTML</td></tr>
+<tr><td><nobr>p = write 'ok'</nobr></td><td>remembers written HTML</td></tr>
 <tr><td>p.html 'quick'</td><td>changes old text</td></tr>
 <tr><td>button 'go',<br>-&gt; fd 10</td><td>adds a button with<br>an action</td></tr>
+<tr><td>type 'XXX'</td><td>type in monospace</td></tr>
 <tr><td>read (n) -&gt;<br>write n*n</td><td>adds a text input with<br>an action</td></tr>
 <tr><td>t = table 3,5</td><td>adds a 3x5 &lt;table&gt;</td></tr>
 <tr><td>t.cell(0, 0).<br>text 'aloha'</td>
 <td>selects the first cell of the<br>table and sets its text</td></tr>
-
-<tr><th colspan="2"><h3>Other Objects</h3></th></tr>
-<tr><td>$(window)</td><td>the visible window</td></tr>
-<tr><td>$('p').eq(0)</td><td>the first &lt;p&gt; element</td></tr>
-<tr><td>$('#zed')</td><td>the element with id="zed"</td></tr>
+<tr><td>play 'ceg'</td><td>play musical notes</td></tr>
 
 </table>
 
@@ -67,19 +68,17 @@
 <td>if enclosed in the window</td></tr>
 
 <tr><th colspan="2"><h3>Objects</h3></th></tr>
-<tr><td>t = new Turtle</td><td>make a new turtle</td></tr>
-<tr><td>p = new Piano 88</td><td>make a new 88-key piano</td></tr>
+<tr><td>t = new Turtle</td><td>make a new turtle named t</td></tr>
+<tr><td>t.fd 100</td><td>move t forward</td></tr>
+<tr><td><nobr>p = new Piano 88</nobr></td><td>make a new 88-key piano</td></tr>
 <tr><td>g = $('img')</td><td>select all &lt;img&gt; as a set</td></tr>
+<tr><td>$('#zed')</td><td>the element with id="zed"</td></tr>
 
 <tr><th colspan="2"><h3>Other Functions</h3></th></tr>
 <tr><td>tick 5, -&gt; fd 10</td><td>go 5 times per second</td></tr>
 <tr><td>click -&gt; fd 10</td><td>go when clicked</td></tr>
 <tr><td>random [3,5,7]</td><td>return 3, 5, or 7</td></tr>
 <tr><td>random 100</td><td>random [0..99]</td></tr>
-<tr><td>play 'ceg'</td><td>play musical notes</td></tr>
-<tr><td>$(window)</td><td>the visible window</td></tr>
-<tr><td>$('p').eq(0)</td><td>the first &lt;p&gt; element</td></tr>
-<tr><td>$('#zed')</td><td>the element with id="zed"</td></tr>
 </table>
 
 
